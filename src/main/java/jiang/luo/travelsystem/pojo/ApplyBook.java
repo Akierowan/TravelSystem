@@ -4,10 +4,9 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import lombok.Data;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.util.Date;
+import lombok.Data;
 
 /**
  * 
@@ -28,32 +27,32 @@ public class ApplyBook implements Serializable {
     private String tourCode;
 
     /**
-     * 
+     * 旅团启航日期
      */
-    private LocalDate departDate;
+    private Date departDate;
 
     /**
-     * 
+     * 姓名
      */
     private String name;
 
     /**
-     * 
+     * 性别，0是女，1是男
      */
     private Integer gender;
 
     /**
-     * 
+     * 生日
      */
-    private LocalDate birthday;
+    private Date birthday;
 
     /**
-     * 
+     * 联系电话
      */
     private String phone;
 
     /**
-     * 
+     * 地址
      */
     private String address;
 
@@ -87,6 +86,11 @@ public class ApplyBook implements Serializable {
      */
     private String phoneVice;
 
+    /**
+     * 数据更新时间
+     */
+    private Date updateTime;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -115,7 +119,8 @@ public class ApplyBook implements Serializable {
             && (this.getNameVice() == null ? other.getNameVice() == null : this.getNameVice().equals(other.getNameVice()))
             && (this.getRelationship() == null ? other.getRelationship() == null : this.getRelationship().equals(other.getRelationship()))
             && (this.getAddressVice() == null ? other.getAddressVice() == null : this.getAddressVice().equals(other.getAddressVice()))
-            && (this.getPhoneVice() == null ? other.getPhoneVice() == null : this.getPhoneVice().equals(other.getPhoneVice()));
+            && (this.getPhoneVice() == null ? other.getPhoneVice() == null : this.getPhoneVice().equals(other.getPhoneVice()))
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
     }
 
     @Override
@@ -136,6 +141,7 @@ public class ApplyBook implements Serializable {
         result = prime * result + ((getRelationship() == null) ? 0 : getRelationship().hashCode());
         result = prime * result + ((getAddressVice() == null) ? 0 : getAddressVice().hashCode());
         result = prime * result + ((getPhoneVice() == null) ? 0 : getPhoneVice().hashCode());
+        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         return result;
     }
 
@@ -159,6 +165,7 @@ public class ApplyBook implements Serializable {
         sb.append(", relationship=").append(relationship);
         sb.append(", addressVice=").append(addressVice);
         sb.append(", phoneVice=").append(phoneVice);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
