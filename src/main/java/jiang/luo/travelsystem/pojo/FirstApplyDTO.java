@@ -17,7 +17,7 @@ public class FirstApplyDTO {
 
     private Integer childNumber;
 
-    private Integer id;
+    private Integer pathId;
 
     private Date departureDate;
 

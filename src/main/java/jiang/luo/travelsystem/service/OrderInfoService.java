@@ -11,8 +11,18 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface OrderInfoService extends IService<OrderInfo> {
 
-    //第一次提交申请
-    void saveFirstApply(FirstApplyDTO firstApplyDTO);
+    /**
+     * 第一次提交申请
+     * @param firstApplyDTO
+     * @return
+     */
+    Integer saveFirstApply(FirstApplyDTO firstApplyDTO);
+
+//    /**
+//     * 支付订金
+//     * @param orderInfoId
+//     */
+//    void payDeposit(Integer orderInfoId);
 
 
 }

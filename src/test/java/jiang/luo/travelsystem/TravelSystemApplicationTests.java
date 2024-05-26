@@ -22,8 +22,6 @@ class TravelSystemApplicationTests {
     }
 
 
-
-
     @Autowired
     ApplyBookMapper applyBookMapper;
     @Autowired

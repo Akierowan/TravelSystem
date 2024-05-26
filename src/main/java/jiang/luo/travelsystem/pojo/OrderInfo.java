@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.Builder;
 import lombok.Data;
 
 /**
@@ -14,12 +16,16 @@ import lombok.Data;
  */
 @TableName(value ="order_info")
 @Data
+@Builder
 public class OrderInfo implements Serializable {
-    /**
-     * 
-     */
+
     @TableId(type = IdType.AUTO)
     private Integer id;
+
+    /**
+     * 姓名
+     */
+    private String name;
 
     /**
      * 订金
@@ -52,7 +58,7 @@ public class OrderInfo implements Serializable {
     private Date payDeadline;
 
     /**
-     * 余款发送日期
+     * 交款单发送日期
      */
     private Date paymentSendDate;
 
@@ -60,11 +66,6 @@ public class OrderInfo implements Serializable {
      * 余款支付情况，0-未支付   1-已支付
      */
     private Integer balanceStatus;
-
-    /**
-     * 姓名
-     */
-    private String name;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

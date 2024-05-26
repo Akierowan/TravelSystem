@@ -1,6 +1,7 @@
 package jiang.luo.travelsystem.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.pojo.PathBook;
 import jiang.luo.travelsystem.service.PathBookService;
@@ -24,6 +25,19 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     public PathBook queryPathByPathNumber(Integer id) {
         return pathBookMapper.selectById(id);
 
+    }
+
+    /**
+     * 分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public IPage<PathBook> queryPage(int pageNum, int pageSize) {
+        Page<PathBook> page = new Page<>(pageNum, pageSize);
+        return pathBookMapper.selectPage(page, null);
+//        return this.page(page, queryWrapper);
     }
 }
 

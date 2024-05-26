@@ -1,9 +1,13 @@
 package jiang.luo.travelsystem.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.pojo.FinanceBook;
+import jiang.luo.travelsystem.pojo.PathBook;
 import jiang.luo.travelsystem.service.FinanceBookService;
 import jiang.luo.travelsystem.mapper.FinanceBookMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +19,21 @@ import org.springframework.stereotype.Service;
 public class FinanceBookServiceImpl extends ServiceImpl<FinanceBookMapper, FinanceBook>
     implements FinanceBookService{
 
+    @Autowired
+    private FinanceBookMapper financeBookMapper;
+
+
+    /**
+     * 分页查询
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public IPage<FinanceBook> pageQuery(int pageNum, int pageSize) {
+        Page<FinanceBook> page = new Page<>(pageNum, pageSize);
+        return financeBookMapper.selectPage(page, null);
+    }
 }
 
 
