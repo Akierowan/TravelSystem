@@ -10,4 +10,15 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PathBookService extends IService<PathBook> {
 
+    //TODO 插入新路线
+
+
+    //TODO 逻辑删除路线
+
+    //TODO 查询路径
+    PathBook queryPathByPathNumber(Integer id);
+
+
+
+
 }

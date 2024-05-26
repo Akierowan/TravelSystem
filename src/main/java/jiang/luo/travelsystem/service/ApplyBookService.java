@@ -4,6 +4,8 @@ import jiang.luo.travelsystem.pojo.ApplyBook;
 import com.baomidou.mybatisplus.extension.service.IService;
 import jiang.luo.travelsystem.pojo.ApplyBookDTO;
 
+import java.util.function.ToDoubleBiFunction;
+
 /**
 * @author lenovo
 * @description 针对表【apply_book】的数据库操作Service
@@ -11,9 +13,8 @@ import jiang.luo.travelsystem.pojo.ApplyBookDTO;
 */
 public interface ApplyBookService extends IService<ApplyBook> {
 
-    //TODO 提交申请书
-    void saveApplyBook(ApplyBookDTO applyBookDTO);
 
+    void saveApplyBook(ApplyBookDTO applyBookDTO);
 
 
 

@@ -14,11 +14,13 @@
             <result property="payDeadline" column="pay_deadline" jdbcType="DATE"/>
             <result property="paymentSendDate" column="payment_send_date" jdbcType="DATE"/>
             <result property="balanceStatus" column="balance_status" jdbcType="INTEGER"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,deposit,apply_book_id,
         total_price,deposit_status,cancel_status,
-        pay_deadline,payment_send_date,balance_status
+        pay_deadline,payment_send_date,balance_status,
+        name
     </sql>
 </mapper>

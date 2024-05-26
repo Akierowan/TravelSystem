@@ -61,6 +61,11 @@ public class OrderInfo implements Serializable {
      */
     private Integer balanceStatus;
 
+    /**
+     * 姓名
+     */
+    private String name;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -84,7 +89,8 @@ public class OrderInfo implements Serializable {
             && (this.getCancelStatus() == null ? other.getCancelStatus() == null : this.getCancelStatus().equals(other.getCancelStatus()))
             && (this.getPayDeadline() == null ? other.getPayDeadline() == null : this.getPayDeadline().equals(other.getPayDeadline()))
             && (this.getPaymentSendDate() == null ? other.getPaymentSendDate() == null : this.getPaymentSendDate().equals(other.getPaymentSendDate()))
-            && (this.getBalanceStatus() == null ? other.getBalanceStatus() == null : this.getBalanceStatus().equals(other.getBalanceStatus()));
+            && (this.getBalanceStatus() == null ? other.getBalanceStatus() == null : this.getBalanceStatus().equals(other.getBalanceStatus()))
+            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()));
     }
 
     @Override
@@ -100,6 +106,7 @@ public class OrderInfo implements Serializable {
         result = prime * result + ((getPayDeadline() == null) ? 0 : getPayDeadline().hashCode());
         result = prime * result + ((getPaymentSendDate() == null) ? 0 : getPaymentSendDate().hashCode());
         result = prime * result + ((getBalanceStatus() == null) ? 0 : getBalanceStatus().hashCode());
+        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         return result;
     }
 
@@ -118,6 +125,7 @@ public class OrderInfo implements Serializable {
         sb.append(", payDeadline=").append(payDeadline);
         sb.append(", paymentSendDate=").append(paymentSendDate);
         sb.append(", balanceStatus=").append(balanceStatus);
+        sb.append(", name=").append(name);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

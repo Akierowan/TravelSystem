@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 /**
 * @author lenovo
 * @description 针对表【order_info】的数据库操作Mapper
-* @createDate 2024-05-26 14:33:07
+* @createDate 2024-05-26 18:23:23
 * @Entity jiang.luo.travelsystem.pojo.OrderInfo
 */
 @Mapper

@@ -1,6 +1,5 @@
 package jiang.luo.travelsystem.mapper;
 
-import jiang.luo.travelsystem.pojo.OrderInfo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
