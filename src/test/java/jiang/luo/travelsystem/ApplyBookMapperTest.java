@@ -3,8 +3,14 @@ import java.util.Date;
 import java.time.LocalDate;
 
 import jiang.luo.travelsystem.mapper.ApplyBookMapper;
+import jiang.luo.travelsystem.mapper.OrderInfoMapper;
+import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.ApplyBook;
+import jiang.luo.travelsystem.pojo.OrderInfo;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Or;
+import org.springframework.beans.factory.annotation.AnnotationBeanWiringInfoResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -14,20 +20,65 @@ import java.util.List;
 public class ApplyBookMapperTest {
     @Autowired
     ApplyBookMapper applyBookMapper;
+    @Autowired
+    OrderInfoMapper orderInfoMapper;
+    @Autowired
+    PathBookMapper pathBookMapper;
+
+
+/*
     @Test
     void test1(){
         List<ApplyBook> applyBookList = applyBookMapper.selectList(null);
         applyBookList.forEach(System.out::println);
 
     }
+*/
+
+/*
+    @Test
+    void test_insert(){
+        OrderInfo orderInfo = new OrderInfo();
+
+        orderInfo.setId(12);
+
+
+
+
+
+
+    }
+*/
+
+    @Test
+    //测试orderinfo
+    void test3(){
+        OrderInfo orderInfo = new OrderInfo();
+
+
+        orderInfo.setId(0);
+        orderInfo.setDeposit(11.11);
+        orderInfo.setApplyBookId(12);
+        orderInfo.setTotalPrice(111.11);
+        orderInfo.setDepositStatus(0);
+        orderInfo.setCancelStatus(0);
+
+        int i = orderInfoMapper.insert(orderInfo);
+
+        System.out.println("成功插入" + i + "条记录");
+
+
+
+    }
 
 
     @Test
+    //测试applybook
     void test2(){
         ApplyBook applyBook = new ApplyBook();
 
         applyBook.setId(0);
-        applyBook.setTourCode("123");
+        applyBook.setTourCode("1213");
         applyBook.setDepartDate(new Date());
         applyBook.setName("123");
         applyBook.setGender(0);
@@ -42,13 +93,7 @@ public class ApplyBookMapperTest {
         applyBook.setPhoneVice("123");
         applyBook.setUpdateTime(new Date());
 
-//        ApplyBook applyBook1 = new ApplyBook();
-
-
-
-
         int i = applyBookMapper.insert(applyBook);
-//        int q = applyBookMapper.insert(applyBook1);
 
         System.out.println("插入" + i +  "条信息到数据库");
 
