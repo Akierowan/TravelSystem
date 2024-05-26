@@ -1,20 +1,18 @@
 package jiang.luo.travelsystem;
 import java.util.Date;
-import java.time.LocalDate;
 
 import jiang.luo.travelsystem.mapper.ApplyBookMapper;
 import jiang.luo.travelsystem.mapper.OrderInfoMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.ApplyBook;
 import jiang.luo.travelsystem.pojo.OrderInfo;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Or;
-import org.springframework.beans.factory.annotation.AnnotationBeanWiringInfoResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class ApplyBookMapperTest {
@@ -35,20 +33,21 @@ public class ApplyBookMapperTest {
     }
 */
 
-/*
     @Test
     void test_insert(){
         OrderInfo orderInfo = new OrderInfo();
 
-        orderInfo.setId(12);
+        Map<String,Object>mp = new HashMap<>();
+        mp.put("apply_book_id",12);
 
+        List<OrderInfo>orderInfos = orderInfoMapper.selectByMap(mp);
 
+        orderInfos.forEach(System.out::println);
 
 
 
 
     }
-*/
 
     @Test
     //测试orderinfo

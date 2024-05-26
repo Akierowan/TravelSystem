@@ -10,4 +10,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface ApplyBookService extends IService<ApplyBook> {
 
+    //TODO 提交申请书
+
 }

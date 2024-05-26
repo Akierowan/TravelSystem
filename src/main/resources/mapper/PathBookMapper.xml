@@ -12,11 +12,12 @@
             <result property="childPrice" column="child_price" jdbcType="FLOAT"/>
             <result property="discount" column="discount" jdbcType="VARCHAR"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="deleteStatus" column="delete_status" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,path_number,path,
         adult_price,child_price,discount,
-        update_time
+        update_time,delete_status
     </sql>
 </mapper>

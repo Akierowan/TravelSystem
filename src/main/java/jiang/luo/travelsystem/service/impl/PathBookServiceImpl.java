@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
 * @author lenovo
 * @description 针对表【path_book】的数据库操作Service实现
-* @createDate 2024-05-26 11:30:57
+* @createDate 2024-05-26 14:48:56
 */
 @Service
 public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>

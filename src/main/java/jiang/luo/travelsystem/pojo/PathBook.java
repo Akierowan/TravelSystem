@@ -51,6 +51,11 @@ public class PathBook implements Serializable {
      */
     private Date updateTime;
 
+    /**
+     * 是否逻辑删除，0正常，1删除
+     */
+    private Integer deleteStatus;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -72,7 +77,8 @@ public class PathBook implements Serializable {
             && (this.getAdultPrice() == null ? other.getAdultPrice() == null : this.getAdultPrice().equals(other.getAdultPrice()))
             && (this.getChildPrice() == null ? other.getChildPrice() == null : this.getChildPrice().equals(other.getChildPrice()))
             && (this.getDiscount() == null ? other.getDiscount() == null : this.getDiscount().equals(other.getDiscount()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()));
+            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
+            && (this.getDeleteStatus() == null ? other.getDeleteStatus() == null : this.getDeleteStatus().equals(other.getDeleteStatus()));
     }
 
     @Override
@@ -86,6 +92,7 @@ public class PathBook implements Serializable {
         result = prime * result + ((getChildPrice() == null) ? 0 : getChildPrice().hashCode());
         result = prime * result + ((getDiscount() == null) ? 0 : getDiscount().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
+        result = prime * result + ((getDeleteStatus() == null) ? 0 : getDeleteStatus().hashCode());
         return result;
     }
 
@@ -102,6 +109,7 @@ public class PathBook implements Serializable {
         sb.append(", childPrice=").append(childPrice);
         sb.append(", discount=").append(discount);
         sb.append(", updateTime=").append(updateTime);
+        sb.append(", deleteStatus=").append(deleteStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

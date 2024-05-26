@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.util.Date;
 import lombok.Data;
 
 /**
@@ -36,14 +37,29 @@ public class OrderInfo implements Serializable {
     private Double totalPrice;
 
     /**
-     * 0: 未交订金, 1: 已交订金
+     * 订金支付情况 ，0: 未交订金, 1: 已交订金
      */
     private Integer depositStatus;
 
     /**
-     * 0: 未取消, 1: 已取消
+     * 申请取消情况，0: 未取消, 1: 已取消
      */
     private Integer cancelStatus;
+
+    /**
+     * 支付截止日期
+     */
+    private Date payDeadline;
+
+    /**
+     * 余款发送日期
+     */
+    private Date paymentSendDate;
+
+    /**
+     * 余款支付情况，0-未支付   1-已支付
+     */
+    private Integer balanceStatus;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
@@ -65,7 +81,10 @@ public class OrderInfo implements Serializable {
             && (this.getApplyBookId() == null ? other.getApplyBookId() == null : this.getApplyBookId().equals(other.getApplyBookId()))
             && (this.getTotalPrice() == null ? other.getTotalPrice() == null : this.getTotalPrice().equals(other.getTotalPrice()))
             && (this.getDepositStatus() == null ? other.getDepositStatus() == null : this.getDepositStatus().equals(other.getDepositStatus()))
-            && (this.getCancelStatus() == null ? other.getCancelStatus() == null : this.getCancelStatus().equals(other.getCancelStatus()));
+            && (this.getCancelStatus() == null ? other.getCancelStatus() == null : this.getCancelStatus().equals(other.getCancelStatus()))
+            && (this.getPayDeadline() == null ? other.getPayDeadline() == null : this.getPayDeadline().equals(other.getPayDeadline()))
+            && (this.getPaymentSendDate() == null ? other.getPaymentSendDate() == null : this.getPaymentSendDate().equals(other.getPaymentSendDate()))
+            && (this.getBalanceStatus() == null ? other.getBalanceStatus() == null : this.getBalanceStatus().equals(other.getBalanceStatus()));
     }
 
     @Override
@@ -78,6 +97,9 @@ public class OrderInfo implements Serializable {
         result = prime * result + ((getTotalPrice() == null) ? 0 : getTotalPrice().hashCode());
         result = prime * result + ((getDepositStatus() == null) ? 0 : getDepositStatus().hashCode());
         result = prime * result + ((getCancelStatus() == null) ? 0 : getCancelStatus().hashCode());
+        result = prime * result + ((getPayDeadline() == null) ? 0 : getPayDeadline().hashCode());
+        result = prime * result + ((getPaymentSendDate() == null) ? 0 : getPaymentSendDate().hashCode());
+        result = prime * result + ((getBalanceStatus() == null) ? 0 : getBalanceStatus().hashCode());
         return result;
     }
 
@@ -93,6 +115,9 @@ public class OrderInfo implements Serializable {
         sb.append(", totalPrice=").append(totalPrice);
         sb.append(", depositStatus=").append(depositStatus);
         sb.append(", cancelStatus=").append(cancelStatus);
+        sb.append(", payDeadline=").append(payDeadline);
+        sb.append(", paymentSendDate=").append(paymentSendDate);
+        sb.append(", balanceStatus=").append(balanceStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
