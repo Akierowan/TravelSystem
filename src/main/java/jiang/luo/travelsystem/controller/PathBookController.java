@@ -1,7 +1,7 @@
 package jiang.luo.travelsystem.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import jiang.luo.travelsystem.pojo.PathBook;
+import jiang.luo.travelsystem.pojo.PageResult;
+import jiang.luo.travelsystem.pojo.Result;
 import jiang.luo.travelsystem.service.PathBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/pathbook")
 public class PathBookController {
     @Autowired
     private PathBookService pathBookService;
 
     @GetMapping("/page")
-    public IPage<PathBook> page(){
-        return pathBookService.queryPage(1, 10);
+    public Result<PageResult> page() {
+        PageResult pageResult = pathBookService.pageQuery(1, 10);
+        return Result.success(pageResult);
     }
+
+
 }
