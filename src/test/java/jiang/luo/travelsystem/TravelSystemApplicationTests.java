@@ -1,8 +1,10 @@
 package jiang.luo.travelsystem;
 
 import jiang.luo.travelsystem.mapper.ApplyBookMapper;
+import jiang.luo.travelsystem.mapper.OrderInfoMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.ApplyBook;
+import jiang.luo.travelsystem.pojo.OrderInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
