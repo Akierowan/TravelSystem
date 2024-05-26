@@ -5,10 +5,14 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
+import jiang.luo.travelsystem.pojo.PathBookDTO;
 import jiang.luo.travelsystem.service.PathBookService;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
 * @author lenovo
@@ -22,8 +26,37 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     @Autowired
     PathBookMapper pathBookMapper;
 
+    /**
+     * 新增路线
+     * @param pathBookDTO
+     */
     @Override
-    public PathBook queryPathByPathNumber(Integer id) {
+    public void savePathBook(PathBookDTO pathBookDTO) {
+        PathBook pathBook = new PathBook();
+        BeanUtils.copyProperties(pathBookDTO, pathBook);
+        pathBook.setUpdateTime(new Date());
+        pathBookMapper.insert(pathBook);
+    }
+
+    /**
+     * 逻辑删除路线
+     * @param id
+     */
+    @Override
+    public void deletePathLogicallyById(Integer id) {
+        PathBook pathBook = new PathBook();
+        pathBook.setId(id);
+        pathBook.setDeleteStatus(1);
+        pathBookMapper.updateById(pathBook);
+    }
+
+    /**
+     * 根据id查找路线信息
+     * @param id
+     * @return
+     */
+    @Override
+    public PathBook queryPathById(Integer id) {
         return pathBookMapper.selectById(id);
 
     }

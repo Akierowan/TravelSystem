@@ -1,9 +1,9 @@
 package jiang.luo.travelsystem.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
 import com.baomidou.mybatisplus.extension.service.IService;
+import jiang.luo.travelsystem.pojo.PathBookDTO;
 
 /**
 * @author lenovo
@@ -12,13 +12,25 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PathBookService extends IService<PathBook> {
 
-    //TODO 插入新路线
+    /**
+     * 新增路线
+     * @param pathBookDTO
+     */
+    void savePathBook(PathBookDTO pathBookDTO);
 
 
-    //TODO 逻辑删除路线
+    /**
+     * 逻辑删除路线
+     * @param id
+     */
+    void deletePathLogicallyById(Integer id);
 
-    //TODO 查询路径
-    PathBook queryPathByPathNumber(Integer id);
+    /**
+     * 根据id查询路线信息
+     * @param id
+     * @return
+     */
+    PathBook queryPathById(Integer id);
 
     /**
      * 分页查询

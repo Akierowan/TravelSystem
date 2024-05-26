@@ -16,6 +16,4 @@ public interface ApplyBookService extends IService<ApplyBook> {
 
     void saveApplyBook(ApplyBookDTO applyBookDTO);
 
-
-
 }
