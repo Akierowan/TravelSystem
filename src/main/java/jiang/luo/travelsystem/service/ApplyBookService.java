@@ -2,6 +2,7 @@ package jiang.luo.travelsystem.service;
 
 import jiang.luo.travelsystem.pojo.ApplyBook;
 import com.baomidou.mybatisplus.extension.service.IService;
+import jiang.luo.travelsystem.pojo.ApplyBookDTO;
 
 /**
 * @author lenovo
@@ -11,5 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface ApplyBookService extends IService<ApplyBook> {
 
     //TODO 提交申请书
+    void saveApplyBook(ApplyBookDTO applyBookDTO);
+
+
+
 
 }
