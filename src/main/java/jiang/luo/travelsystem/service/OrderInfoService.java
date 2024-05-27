@@ -29,8 +29,10 @@ public interface OrderInfoService extends IService<OrderInfo> {
     List<OrderInfo> getByName(String name);
 
 
-//     * TODO 支付订金
-
+    /**
+     * 支付订金
+     * @param id
+     */
     void payDeposit(Integer id);
 
 }
