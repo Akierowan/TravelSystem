@@ -73,7 +73,7 @@ public class PathBookController {
     @GetMapping
     public Result<PathBook> queryPathById(@RequestParam Integer id){
         try {
-            PathBook pathBook = pathBookService.queryPathById(id);
+            PathBook pathBook = pathBookService.getById(id);
             return Result.success(pathBook);
         } catch (Exception e) {
             return Result.error("无法获取改路线信息");

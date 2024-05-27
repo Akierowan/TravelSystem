@@ -51,6 +51,8 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         orderInfoMapper.insert(orderInfo);
         return orderInfo.getId();
     }
+
+
 }
 
 

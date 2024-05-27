@@ -52,17 +52,6 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     }
 
     /**
-     * 根据id查找路线信息
-     * @param id
-     * @return
-     */
-    @Override
-    public PathBook queryPathById(Integer id) {
-        return pathBookMapper.selectById(id);
-
-    }
-
-    /**
      * 分页查询
      * @param pageNum
      * @param pageSize
@@ -70,10 +59,10 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
      */
     @Override
     public PageResult pageQuery(int pageNum, int pageSize) {
+        System.err.println(pageNum + " " + pageSize);
         Page<PathBook> page = new Page<>(pageNum, pageSize);
         Page<PathBook> pathBookPage = pathBookMapper.selectPage(page, null);
         return new PageResult(pathBookPage.getTotal(), pathBookPage.getRecords());
-//        return this.page(page, queryWrapper);
     }
 }
 
