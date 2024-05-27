@@ -38,4 +38,6 @@ public class ApplyBookController {
         }
     }
 
+    // TODO 变更参加者信息   整个申请的取消
+
 }

@@ -1,7 +1,11 @@
 package jiang.luo.travelsystem.service.impl;
 
+import cn.hutool.core.date.DateTime;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jiang.luo.travelsystem.mapper.FinanceBookMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
+import jiang.luo.travelsystem.pojo.FinanceBook;
 import jiang.luo.travelsystem.pojo.FirstApplyDTO;
 import jiang.luo.travelsystem.pojo.OrderInfo;
 import jiang.luo.travelsystem.pojo.PathBook;
@@ -11,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
 * @author lenovo
@@ -22,9 +27,11 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     implements OrderInfoService{
 
     @Autowired
-    OrderInfoMapper orderInfoMapper;
+    private OrderInfoMapper orderInfoMapper;
     @Autowired
-    PathBookMapper pathBookMapper;
+    private PathBookMapper pathBookMapper;
+    @Autowired
+    private FinanceBookMapper financeBookMapper;
 
     /**
      * 第一步申请
@@ -50,6 +57,39 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
                 .build();
         orderInfoMapper.insert(orderInfo);
         return orderInfo.getId();
+    }
+
+    /**
+     * 根据姓名查找订单信息
+     * @param name
+     * @return
+     */
+    @Override
+    public List<OrderInfo> getByName(String name) {
+        QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", name);
+        return orderInfoMapper.selectList(queryWrapper);
+    }
+
+    /**
+     * 支付订金
+     * @param id
+     */
+    @Override
+    public void payDeposit(Integer id) {
+        // 修改订单表中的订单支付状态
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setDepositStatus(1);
+        orderInfo.setId(id);
+        orderInfoMapper.updateById(orderInfo);
+
+        //添加本次交易到财务报表
+        orderInfo = orderInfoMapper.selectById(id);
+        FinanceBook financeBook = new FinanceBook();
+        financeBook.setAmount(orderInfo.getDeposit());
+        financeBook.setUpdateTime(new DateTime());
+        financeBook.setType(0);
+        financeBookMapper.insert(financeBook);
     }
 
 

@@ -21,6 +21,16 @@ import java.util.Map;
 @SpringBootTest
 class TravelSystemApplicationTests {
     @Test
+    void testPay(){
+        int id = 2;
+        // 修改订单表中的订单支付状态
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setDepositStatus(1);
+        orderInfo.setId(id);
+        orderInfoMapper.updateById(orderInfo);
+        System.out.println(orderInfo.getDeposit());
+    }
+    @Test
     void testPage(){
         int pageNum = 2;
         int pageSize = 0;
