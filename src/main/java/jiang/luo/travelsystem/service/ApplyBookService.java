@@ -14,6 +14,16 @@ import java.util.function.ToDoubleBiFunction;
 public interface ApplyBookService extends IService<ApplyBook> {
 
 
+    /**
+     * 新增申请书
+     * @param applyBookDTO
+     */
     void saveApplyBook(ApplyBookDTO applyBookDTO);
+
+    /**
+     * 更改申请书
+     * @param applyBookDTO
+     */
+    void updateApplyBook(ApplyBookDTO applyBookDTO);
 
 }

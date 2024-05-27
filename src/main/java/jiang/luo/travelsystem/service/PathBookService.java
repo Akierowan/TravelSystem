@@ -31,8 +31,7 @@ public interface PathBookService extends IService<PathBook> {
      * @param pageSize
      * @return
      */
-    public PageResult pageQuery(int pageNum, int pageSize);
-
+    PageResult pageQuery(int pageNum, int pageSize);
 
 
 }

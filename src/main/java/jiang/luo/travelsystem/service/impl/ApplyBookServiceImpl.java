@@ -40,6 +40,17 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
 
 
     }
+
+    /**
+     * 更改申请书
+     * @param applyBookDTO
+     */
+    @Override
+    public void updateApplyBook(ApplyBookDTO applyBookDTO) {
+        ApplyBook applyBook = new ApplyBook();
+        BeanUtils.copyProperties(applyBookDTO, applyBook);
+        applyBookMapper.updateById(applyBook);
+    }
 }
 
 

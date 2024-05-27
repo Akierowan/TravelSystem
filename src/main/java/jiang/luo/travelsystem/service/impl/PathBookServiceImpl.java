@@ -34,6 +34,11 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     public void savePathBook(PathBookDTO pathBookDTO) {
         PathBook pathBook = new PathBook();
         BeanUtils.copyProperties(pathBookDTO, pathBook);
+        // 若传来的pathBookDTO的id不为空则是变更路线，否则为新增路线
+        if (pathBookDTO.getId() != null) {
+            pathBook.setId(null);
+            pathBook.setLastVersionId(pathBookDTO.getId());
+        }
         pathBook.setUpdateTime(new Date());
         pathBookMapper.insert(pathBook);
     }
@@ -59,7 +64,6 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
      */
     @Override
     public PageResult pageQuery(int pageNum, int pageSize) {
-        System.err.println(pageNum + " " + pageSize);
         Page<PathBook> page = new Page<>(pageNum, pageSize);
         Page<PathBook> pathBookPage = pathBookMapper.selectPage(page, null);
         return new PageResult(pathBookPage.getTotal(), pathBookPage.getRecords());

@@ -17,6 +17,11 @@ public class ApplyBookController {
     @Autowired
     private ApplyBookService applyBookService;
 
+    /**
+     * 提交旅游申请书
+     * @param applyBookDTO
+     * @return
+     */
     @ApiOperation("提交旅游申请书")
     @PostMapping("save")
     public Result saveApplyBook(@RequestBody ApplyBookDTO applyBookDTO){
@@ -28,6 +33,11 @@ public class ApplyBookController {
         }
     }
 
+    /**
+     * 根据id查找旅游申请书
+     * @param id
+     * @return
+     */
     @ApiOperation("根据id查找旅游申请书")
     @GetMapping
     public Result<ApplyBook> getById(@RequestParam Integer id){
@@ -39,6 +49,20 @@ public class ApplyBookController {
         }
     }
 
-    // TODO 变更参加者信息   整个申请的取消
+    /**
+     * 变更旅游申请书
+     * @param applyBookDTO
+     * @return
+     */
+    @ApiOperation("变更旅游申请书")
+    @PostMapping("/alter")
+    public Result alterApplyBook(@RequestBody ApplyBookDTO applyBookDTO){
+        try {
+            applyBookService.updateApplyBook(applyBookDTO);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("变更旅游申请书失败");
+        }
+    }
 
 }

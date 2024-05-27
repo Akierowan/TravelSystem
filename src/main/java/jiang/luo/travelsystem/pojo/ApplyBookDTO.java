@@ -6,7 +6,10 @@ import java.util.Date;
 
 @Data
 public class ApplyBookDTO {
-
+    /**
+     * 主键
+     */
+    Integer id;
     /**
      *
      */
