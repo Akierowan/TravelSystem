@@ -1,5 +1,7 @@
 package jiang.luo.travelsystem.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
 import jiang.luo.travelsystem.pojo.PathBookDTO;
@@ -8,6 +10,7 @@ import jiang.luo.travelsystem.service.PathBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@Api(tags = "旅游路线相关接口")
 @RestController
 @RequestMapping("/pathbook")
 public class PathBookController {
@@ -18,6 +21,7 @@ public class PathBookController {
      * 旅游路线分页查询
      * @return
      */
+    @ApiOperation("分页查询")
     @GetMapping("/page")
     public Result<PageResult> page(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         try {
@@ -33,6 +37,7 @@ public class PathBookController {
      * @param pathBookDTO
      * @return
      */
+    @ApiOperation("新增或变更路线")
     @PostMapping("save")
     public Result save(@RequestBody PathBookDTO pathBookDTO){
         try {
@@ -48,6 +53,7 @@ public class PathBookController {
      * @param id
      * @return
      */
+    @ApiOperation("逻辑删除路线")
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable Integer id){
         try {
@@ -63,6 +69,7 @@ public class PathBookController {
      * @param id
      * @return
      */
+    @ApiOperation("根据id查询路线信息")
     @GetMapping
     public Result<PathBook> queryPathById(@RequestParam Integer id){
         try {

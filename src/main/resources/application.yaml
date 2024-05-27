@@ -4,10 +4,20 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 768260
-#logging:
-#  level:
-#    com.itheima: debug
-#  pattern:
-#    dateformat: HH:mm:ss
-#mybatis:
-#  mapper-locations: classpath*:mapper/*.xml
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+#  application:
+#    name: springfox-swagger
+#server:
+#  port: 8080
+## ===== 自定义swagger配置 ===== #
+#swagger:
+#  enable: true
+#  application-name: ${spring.application.name}
+#  application-version: 1.0
+#  application-description: springfox swagger 3.0整合Demo
+#  try-host: http://localhost:${server.port}
+

@@ -1,7 +1,7 @@
 package jiang.luo.travelsystem.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import jiang.luo.travelsystem.pojo.FinanceBook;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.Result;
 import jiang.luo.travelsystem.service.FinanceBookService;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags="财务报表相关接口")
 @RestController
 @RequestMapping("/financebook")
 public class FinanceBookController {
@@ -21,6 +22,7 @@ public class FinanceBookController {
      * 财务报表分页查询
      * @return
      */
+    @ApiOperation("分页查询")
     @GetMapping("/page")
     public Result<PageResult> page(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
         try {
