@@ -56,6 +56,11 @@ public class PathBook implements Serializable {
      */
     private Integer deleteStatus;
 
+    /**
+     *  上一版本的id
+     */
+    private Integer lastVersionId;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -78,7 +83,8 @@ public class PathBook implements Serializable {
             && (this.getChildPrice() == null ? other.getChildPrice() == null : this.getChildPrice().equals(other.getChildPrice()))
             && (this.getDiscount() == null ? other.getDiscount() == null : this.getDiscount().equals(other.getDiscount()))
             && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getDeleteStatus() == null ? other.getDeleteStatus() == null : this.getDeleteStatus().equals(other.getDeleteStatus()));
+            && (this.getDeleteStatus() == null ? other.getDeleteStatus() == null : this.getDeleteStatus().equals(other.getDeleteStatus())
+            && (this.getLastVersionId() == null ? other.getLastVersionId() == null : this.getLastVersionId()).equals(other.getLastVersionId()));
     }
 
     @Override
@@ -93,6 +99,7 @@ public class PathBook implements Serializable {
         result = prime * result + ((getDiscount() == null) ? 0 : getDiscount().hashCode());
         result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
         result = prime * result + ((getDeleteStatus() == null) ? 0 : getDeleteStatus().hashCode());
+        result = prime * result + ((getLastVersionId() == null) ? 0 : getLastVersionId().hashCode());
         return result;
     }
 
@@ -110,6 +117,7 @@ public class PathBook implements Serializable {
         sb.append(", discount=").append(discount);
         sb.append(", updateTime=").append(updateTime);
         sb.append(", deleteStatus=").append(deleteStatus);
+        sb.append(", lastVersionId=").append(lastVersionId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

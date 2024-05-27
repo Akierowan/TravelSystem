@@ -28,4 +28,9 @@ public class PathBookDTO {
      * 打折信息
      */
     private String discount;
+
+    /**
+     *  上一版本的id
+     */
+    private Integer lastVersionId;
 }

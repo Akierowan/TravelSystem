@@ -13,7 +13,7 @@ import jiang.luo.travelsystem.pojo.PathBookDTO;
 public interface PathBookService extends IService<PathBook> {
 
     /**
-     * 新增路线
+     * 新增或变更路线
      * @param pathBookDTO
      */
     void savePathBook(PathBookDTO pathBookDTO);

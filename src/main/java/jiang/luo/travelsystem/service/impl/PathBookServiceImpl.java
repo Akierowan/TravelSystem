@@ -27,7 +27,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     PathBookMapper pathBookMapper;
 
     /**
-     * 新增路线
+     * 新增或变更路线
      * @param pathBookDTO
      */
     @Override
@@ -47,6 +47,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
         PathBook pathBook = new PathBook();
         pathBook.setId(id);
         pathBook.setDeleteStatus(1);
+        pathBook.setUpdateTime(new Date());
         pathBookMapper.updateById(pathBook);
     }
 

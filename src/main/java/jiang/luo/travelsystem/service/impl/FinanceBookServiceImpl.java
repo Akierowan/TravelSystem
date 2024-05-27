@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.pojo.FinanceBook;
+import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
 import jiang.luo.travelsystem.service.FinanceBookService;
 import jiang.luo.travelsystem.mapper.FinanceBookMapper;
@@ -30,9 +31,10 @@ public class FinanceBookServiceImpl extends ServiceImpl<FinanceBookMapper, Finan
      * @return
      */
     @Override
-    public IPage<FinanceBook> pageQuery(int pageNum, int pageSize) {
+    public PageResult pageQuery(int pageNum, int pageSize) {
         Page<FinanceBook> page = new Page<>(pageNum, pageSize);
-        return financeBookMapper.selectPage(page, null);
+        Page<FinanceBook> financeBookPage = financeBookMapper.selectPage(page, null);
+        return new PageResult(financeBookPage.getTotal(), financeBookPage.getRecords());
     }
 }
 
