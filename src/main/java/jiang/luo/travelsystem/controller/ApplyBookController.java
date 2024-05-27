@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags="旅游申请书相关接口")
 @RestController
 @RequestMapping("/applybook")
+@CrossOrigin
 public class ApplyBookController {
     @Autowired
     private ApplyBookService applyBookService;

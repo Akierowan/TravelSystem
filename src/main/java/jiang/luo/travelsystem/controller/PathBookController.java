@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "旅游路线相关接口")
 @RestController
 @RequestMapping("/pathbook")
+@CrossOrigin
 public class PathBookController {
     @Autowired
     private PathBookService pathBookService;

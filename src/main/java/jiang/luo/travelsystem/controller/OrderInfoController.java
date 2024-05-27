@@ -15,6 +15,7 @@ import java.util.List;
 @Api(tags="订单信息相关接口")
 @RestController
 @RequestMapping("/orderinfo")
+@CrossOrigin
 public class OrderInfoController {
     @Autowired
     private OrderInfoService orderInfoService;

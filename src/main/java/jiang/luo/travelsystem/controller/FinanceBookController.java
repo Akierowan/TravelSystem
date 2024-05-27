@@ -6,14 +6,12 @@ import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.Result;
 import jiang.luo.travelsystem.service.FinanceBookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Api(tags="财务报表相关接口")
 @RestController
 @RequestMapping("/financebook")
+@CrossOrigin
 public class FinanceBookController {
     @Autowired
     private FinanceBookService financeBookService;
