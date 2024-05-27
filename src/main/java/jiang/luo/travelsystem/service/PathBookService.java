@@ -1,5 +1,6 @@
 package jiang.luo.travelsystem.service;
 
+import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -31,7 +32,7 @@ public interface PathBookService extends IService<PathBook> {
      * @param pageSize
      * @return
      */
-    PageResult pageQuery(int pageNum, int pageSize);
+    PageResult pageQuery(PageQueryDTO pageQueryDTO);
 
 
 }
