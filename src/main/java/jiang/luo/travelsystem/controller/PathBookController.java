@@ -26,6 +26,7 @@ public class PathBookController {
             PageResult pageResult = pathBookService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);
         } catch (Exception e) {
+            e.printStackTrace();
             return Result.error("分页查询失败");
         }
     }

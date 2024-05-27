@@ -28,8 +28,7 @@ public interface PathBookService extends IService<PathBook> {
 
     /**
      * 分页查询
-     * @param pageNum
-     * @param pageSize
+     * @param pageQueryDTO
      * @return
      */
     PageResult pageQuery(PageQueryDTO pageQueryDTO);

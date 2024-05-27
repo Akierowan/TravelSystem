@@ -2,6 +2,7 @@ package jiang.luo.travelsystem.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.Result;
 import jiang.luo.travelsystem.service.FinanceBookService;
@@ -21,10 +22,10 @@ public class FinanceBookController {
      * @return
      */
     @ApiOperation("分页查询")
-    @GetMapping("/page")
-    public Result<PageResult> page(@RequestParam Integer pageNum, @RequestParam Integer pageSize){
+    @PostMapping("/page")
+    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO){
         try {
-            PageResult pageResult = financeBookService.pageQuery(pageNum, pageSize);
+            PageResult pageResult = financeBookService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);
         } catch (Exception e) {
             return Result.error("分页查询失败");

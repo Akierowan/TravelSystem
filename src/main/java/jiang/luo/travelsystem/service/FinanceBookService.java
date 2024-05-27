@@ -3,6 +3,7 @@ package jiang.luo.travelsystem.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import jiang.luo.travelsystem.pojo.FinanceBook;
 import com.baomidou.mybatisplus.extension.service.IService;
+import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 
 
@@ -13,5 +14,5 @@ import jiang.luo.travelsystem.pojo.PageResult;
 */
 public interface FinanceBookService extends IService<FinanceBook> {
 
-    public PageResult pageQuery(int pageNum, int pageSize);
+    public PageResult pageQuery(PageQueryDTO pageQueryDTO);
 }

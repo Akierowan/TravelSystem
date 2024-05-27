@@ -67,8 +67,8 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
         Page<PathBook> page = new Page<>(pageQueryDTO.getPageNum(), pageQueryDTO.getPageSize());
         QueryWrapper<PathBook> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("pathNumber", queryWrapper);
-        Page<PathBook> pathBookPage = pathBookMapper.selectPage(page, null);
+        queryWrapper.like("path_number", pageQueryDTO.getParam());
+        Page<PathBook> pathBookPage = pathBookMapper.selectPage(page, queryWrapper);
         return new PageResult(pathBookPage.getTotal(), pathBookPage.getRecords());
     }
 }

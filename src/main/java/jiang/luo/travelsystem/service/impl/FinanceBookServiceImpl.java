@@ -1,9 +1,11 @@
 package jiang.luo.travelsystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.pojo.FinanceBook;
+import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
 import jiang.luo.travelsystem.service.FinanceBookService;
@@ -23,16 +25,17 @@ public class FinanceBookServiceImpl extends ServiceImpl<FinanceBookMapper, Finan
     @Autowired
     private FinanceBookMapper financeBookMapper;
 
-
     /**
      * 分页查询
-     * @param pageNum
-     * @param pageSize
+     * @param pageQueryDTO
      * @return
      */
     @Override
-    public PageResult pageQuery(int pageNum, int pageSize) {
-        Page<FinanceBook> page = new Page<>(pageNum, pageSize);
+    public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
+        Page<FinanceBook> page = new Page<>(pageQueryDTO.getPageNum(), pageQueryDTO.getPageSize());
+        // TODO 条件搜索
+        //QueryWrapper<FinanceBook> queryWrapper = new QueryWrapper<>();
+
         Page<FinanceBook> financeBookPage = financeBookMapper.selectPage(page, null);
         return new PageResult(financeBookPage.getTotal(), financeBookPage.getRecords());
     }
