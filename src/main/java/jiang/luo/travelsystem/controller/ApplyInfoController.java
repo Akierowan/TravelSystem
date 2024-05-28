@@ -81,6 +81,7 @@ public class ApplyInfoController {
             applyInfoService.cancelApply(id);
             return Result.success();
         } catch (Exception e) {
+            e.printStackTrace();
             return Result.error("取消申请失败");
         }
     }

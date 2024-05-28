@@ -2,6 +2,7 @@ package jiang.luo.travelsystem.pojo;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -17,7 +18,7 @@ public class FirstApplyDTO {
 
     private Integer pathId;
 
-    private Date departureDate;
+    private LocalDate departureDate;
 
 
 }

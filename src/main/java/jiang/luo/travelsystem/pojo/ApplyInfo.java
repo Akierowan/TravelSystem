@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -60,7 +62,7 @@ public class ApplyInfo implements Serializable {
     /**
      * 交款单发送日期
      */
-    private Date paymentSendDate;
+    private LocalDate paymentSendDate;
 
     /**
      * 余款支付情况，0-未支付   1-已支付
@@ -70,30 +72,14 @@ public class ApplyInfo implements Serializable {
     /**
      * 数据更新时间
      */
-    private Date updateTime;
+    private LocalDateTime updateTime;
 
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
+    /**
+     * 订金计算比例
+     */
+    private Double depositRatio;
+    // TODO 删除影响？
+//    @TableField(exist = false)
+//    private static final long serialVersionUID = 1L;
 
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", deposit=").append(deposit);
-        sb.append(", totalPrice=").append(totalPrice);
-        sb.append(", depositStatus=").append(depositStatus);
-        sb.append(", cancelStatus=").append(cancelStatus);
-        sb.append(", payDeadline=").append(payDeadline);
-        sb.append(", paymentSendDate=").append(paymentSendDate);
-        sb.append(", balanceStatus=").append(balanceStatus);
-        sb.append(", principalName=").append(principalName);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
 }

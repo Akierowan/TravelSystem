@@ -14,6 +14,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -41,7 +43,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
             pathBook.setId(null);
             pathBook.setLastVersionId(pathBookDTO.getId());
         }
-        pathBook.setUpdateTime(new Date());
+        pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.insert(pathBook);
     }
 
@@ -54,7 +56,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
         PathBook pathBook = new PathBook();
         pathBook.setId(id);
         pathBook.setDeleteStatus(1);
-        pathBook.setUpdateTime(new Date());
+        pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.updateById(pathBook);
     }
 

@@ -87,6 +87,7 @@ public class ApplyBookController {
             applyBookService.cancelParticipation(id);
             return Result.success();
         } catch (Exception e) {
+            e.printStackTrace();
             return Result.error("取消参加失败");
         }
     }

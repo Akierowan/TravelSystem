@@ -2,6 +2,7 @@ package jiang.luo.travelsystem.pojo;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,7 +19,7 @@ public class ApplyBookDTO {
     /**
      * 旅团启航日期
      */
-    private Date departDate;
+    private LocalDate departDate;
 
     /**
      * 路线编号
@@ -38,7 +39,7 @@ public class ApplyBookDTO {
     /**
      * 生日
      */
-    private Date birthday;
+    private LocalDate birthday;
 
     /**
      * 联系电话
