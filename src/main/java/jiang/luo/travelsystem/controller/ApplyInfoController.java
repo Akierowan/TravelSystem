@@ -2,9 +2,7 @@ package jiang.luo.travelsystem.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import jiang.luo.travelsystem.pojo.FirstApplyDTO;
-import jiang.luo.travelsystem.pojo.ApplyInfo;
-import jiang.luo.travelsystem.pojo.Result;
+import jiang.luo.travelsystem.pojo.*;
 import jiang.luo.travelsystem.service.ApplyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -69,5 +67,20 @@ public class ApplyInfoController {
         }
     }
 
+    /**
+     * 分页查询
+     * @param pageQueryDTO
+     * @return
+     */
+    @ApiOperation("分页查询")
+    @PostMapping("/page")
+    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO){
+        try {
+            PageResult pageResult = applyInfoService.pageQuery(pageQueryDTO);
+            return Result.success(pageResult);
+        } catch (Exception e) {
+            return Result.error("分页查询失败");
+        }
+    }
 
 }

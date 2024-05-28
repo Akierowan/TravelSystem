@@ -1,8 +1,9 @@
 package jiang.luo.travelsystem.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import jiang.luo.travelsystem.pojo.ApplyBook;
-import jiang.luo.travelsystem.pojo.ApplyBookDTO;
+import jiang.luo.travelsystem.pojo.*;
 import jiang.luo.travelsystem.service.ApplyBookService;
 import jiang.luo.travelsystem.mapper.ApplyBookMapper;
 import org.springframework.beans.BeanUtils;
@@ -50,6 +51,20 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
         ApplyBook applyBook = new ApplyBook();
         BeanUtils.copyProperties(applyBookDTO, applyBook);
         applyBookMapper.updateById(applyBook);
+    }
+
+    /**
+     * 分页查询
+     * @param pageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
+        Page<ApplyBook> page = new Page<>(pageQueryDTO.getPageNum(), pageQueryDTO.getPageSize());
+        QueryWrapper<ApplyBook> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("name", pageQueryDTO.getParam());
+        Page<ApplyBook> applyBookPage = applyBookMapper.selectPage(page, queryWrapper);
+        return new PageResult(applyBookPage.getTotal(), applyBookPage.getRecords());
     }
 }
 

@@ -3,6 +3,8 @@ package jiang.luo.travelsystem.service;
 import jiang.luo.travelsystem.pojo.FirstApplyDTO;
 import jiang.luo.travelsystem.pojo.ApplyInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import jiang.luo.travelsystem.pojo.PageQueryDTO;
+import jiang.luo.travelsystem.pojo.PageResult;
 
 import java.util.List;
 
@@ -34,6 +36,14 @@ public interface ApplyInfoService extends IService<ApplyInfo> {
      * @param id
      */
     void payDeposit(Integer id);
+
+
+    /**
+     * 分页查询
+     * @param pageQueryDTO
+     * @return
+     */
+    PageResult pageQuery(PageQueryDTO pageQueryDTO);
 
     /**
      * 取消申请

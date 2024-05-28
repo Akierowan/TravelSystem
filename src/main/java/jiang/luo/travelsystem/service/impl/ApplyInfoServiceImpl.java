@@ -2,13 +2,11 @@ package jiang.luo.travelsystem.service.impl;
 
 import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.mapper.FinanceBookMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
-import jiang.luo.travelsystem.pojo.FinanceBook;
-import jiang.luo.travelsystem.pojo.FirstApplyDTO;
-import jiang.luo.travelsystem.pojo.ApplyInfo;
-import jiang.luo.travelsystem.pojo.PathBook;
+import jiang.luo.travelsystem.pojo.*;
 import jiang.luo.travelsystem.service.ApplyInfoService;
 import jiang.luo.travelsystem.mapper.ApplyInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +49,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
             deposit *= 0.2;
         }
         ApplyInfo applyInfo = ApplyInfo.builder()
-                .principalName(firstApplyDTO.getName())
+                .principalName(firstApplyDTO.getPrincipalName())
                 .deposit(deposit)
                 .totalPrice(totalPrice)
                 .build();
@@ -92,7 +90,19 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         financeBookMapper.insert(financeBook);
     }
 
-
+    /**
+     * 分页查询
+     * @param pageQueryDTO
+     * @return
+     */
+    @Override
+    public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
+        Page<ApplyInfo> page = new Page<>(pageQueryDTO.getPageNum(), pageQueryDTO.getPageSize());
+        QueryWrapper<ApplyInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("principal_name", pageQueryDTO.getParam());
+        Page<ApplyInfo> applyInfoPage = applyInfoMapper.selectPage(page, queryWrapper);
+        return new PageResult(applyInfoPage.getTotal(), applyInfoPage.getRecords());
+    }
 }
 
 

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 
- * @TableName order_info
+ * @TableName apply_info
  */
 @TableName(value ="apply_info")
 @Data
