@@ -46,9 +46,9 @@ public interface ApplyInfoService extends IService<ApplyInfo> {
     PageResult pageQuery(PageQueryDTO pageQueryDTO);
 
     /**
-     * 取消申请
+     * 取消整个申请
      * @param id
      */
-//    void cancel(Integer id);  //TODO how to implement?
+    void cancelApply(Integer id);
 
 }

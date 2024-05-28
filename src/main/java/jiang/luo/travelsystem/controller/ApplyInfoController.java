@@ -35,7 +35,7 @@ public class ApplyInfoController {
     }
 
     /**
-     * 根据姓名查找订单信息
+     * 根据姓名查找订单信息  TODO 可以删除？
      * @param name
      * @return
      */
@@ -57,7 +57,7 @@ public class ApplyInfoController {
      * @return
      */
     @ApiOperation("支付订金")
-    @PostMapping("/paydeposit")
+    @PutMapping("/paydeposit")
     public Result payDeposit(@RequestParam Integer id) {
         try {
             applyInfoService.payDeposit(id);
@@ -80,6 +80,22 @@ public class ApplyInfoController {
             return Result.success(pageResult);
         } catch (Exception e) {
             return Result.error("分页查询失败");
+        }
+    }
+
+    /**
+     * 取消整个申请
+     * @param id
+     * @return
+     */
+    @ApiOperation("取消整个申请")
+    @PutMapping("/cancel")
+    public Result cancelApply(Integer id){
+        try {
+            applyInfoService.cancelApply(id);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("取消申请失败");
         }
     }
 

@@ -34,4 +34,10 @@ public interface ApplyBookService extends IService<ApplyBook> {
      * @return
      */
     PageResult pageQuery(PageQueryDTO pageQueryDTO);
+
+    /**
+     * 取消参加（单人）
+     * @param id
+     */
+    void cancelParticipation(Integer id);
 }

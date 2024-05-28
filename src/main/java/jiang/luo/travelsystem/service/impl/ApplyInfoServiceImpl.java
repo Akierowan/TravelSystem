@@ -4,6 +4,7 @@ import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jiang.luo.travelsystem.mapper.ApplyBookMapper;
 import jiang.luo.travelsystem.mapper.FinanceBookMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.*;
@@ -11,6 +12,7 @@ import jiang.luo.travelsystem.service.ApplyInfoService;
 import jiang.luo.travelsystem.mapper.ApplyInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -30,6 +32,8 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
     private PathBookMapper pathBookMapper;
     @Autowired
     private FinanceBookMapper financeBookMapper;
+    @Autowired
+    private ApplyBookMapper applyBookMapper;
 
     /**
      * 第一步申请
@@ -75,6 +79,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
      * @param id
      */
     @Override
+    @Transactional
     public void payDeposit(Integer id) {
         // 修改订单表中的订单支付状态
         ApplyInfo applyInfo = new ApplyInfo();
@@ -105,6 +110,36 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         Page<ApplyInfo> applyInfoPage = applyInfoMapper.selectPage(page, queryWrapper);
         return new PageResult(applyInfoPage.getTotal(), applyInfoPage.getRecords());
     }
+
+    /**
+     * 取消整个申请
+     * @param id
+     */
+    @Override
+    @Transactional
+    public void cancelApply(Integer id) {
+        // 删除相关的所有旅游申请书
+        QueryWrapper<ApplyBook> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("apply_book_id", id);
+        applyBookMapper.delete(queryWrapper);
+
+        // 更改ApplyInfo的cancelStatus
+        ApplyInfo applyInfo = new ApplyInfo();
+        applyInfo.setId(id);
+        applyInfo.setCancelStatus(1);
+        applyInfoMapper.updateById(applyInfo);
+
+        // 添加财务流水到FinanceBook（退款） TODO 计算金额
+        double amount = 88;
+        FinanceBook financeBook = new FinanceBook();
+        financeBook.setAmount(amount);
+        financeBook.setType(2);
+        financeBook.setOrderInfoId(id);
+        financeBook.setUpdateTime(new DateTime());
+        financeBookMapper.insert(financeBook);
+    }
+
+
 }
 
 

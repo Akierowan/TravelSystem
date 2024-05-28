@@ -80,4 +80,14 @@ public class ApplyBookController {
         }
     }
 
+    @ApiOperation("取消参加")
+    @PostMapping("cancel")
+    public Result cancelParticipation(@RequestParam Integer id){
+        try {
+            applyBookService.cancelParticipation(id);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("取消参加失败");
+        }
+    }
 }

@@ -1,14 +1,17 @@
 package jiang.luo.travelsystem.service.impl;
 
+import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jiang.luo.travelsystem.mapper.FinanceBookMapper;
 import jiang.luo.travelsystem.pojo.*;
 import jiang.luo.travelsystem.service.ApplyBookService;
 import jiang.luo.travelsystem.mapper.ApplyBookMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -23,6 +26,8 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
 
     @Autowired
     ApplyBookMapper applyBookMapper;
+    @Autowired
+    FinanceBookMapper financeBookMapper;
 
 
     /**
@@ -65,6 +70,26 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
         queryWrapper.like("name", pageQueryDTO.getParam());
         Page<ApplyBook> applyBookPage = applyBookMapper.selectPage(page, queryWrapper);
         return new PageResult(applyBookPage.getTotal(), applyBookPage.getRecords());
+    }
+
+
+    /**
+     * 取消参加（单人）
+     * @param id
+     */
+    @Override
+    @Transactional
+    public void cancelParticipation(Integer id) {
+        // 删除对应申请书
+        applyBookMapper.deleteById(id);
+        // 添加财务流水  TODO  计算金额
+        double amount = 99;
+        FinanceBook financeBook = new FinanceBook();
+        financeBook.setAmount(amount);
+        financeBook.setType(2);
+        financeBook.setOrderInfoId(id);
+        financeBook.setUpdateTime(new DateTime());
+        financeBookMapper.insert(financeBook);
     }
 }
 
