@@ -52,6 +52,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
                 .principalName(firstApplyDTO.getPrincipalName())
                 .deposit(deposit)
                 .totalPrice(totalPrice)
+                .updateTime(new DateTime())
                 .build();
         applyInfoMapper.insert(applyInfo);
         return applyInfo.getId();
@@ -79,6 +80,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         ApplyInfo applyInfo = new ApplyInfo();
         applyInfo.setDepositStatus(1);
         applyInfo.setId(id);
+        applyInfo.setUpdateTime(new DateTime());
         applyInfoMapper.updateById(applyInfo);
 
         //添加本次交易到财务报表

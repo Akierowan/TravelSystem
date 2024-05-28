@@ -32,6 +32,11 @@ public class ApplyBook implements Serializable {
     private Date departDate;
 
     /**
+     * 路线编号
+     */
+    private String pathNumber;
+
+    /**
      * 姓名
      */
     private String name;

@@ -17,20 +17,20 @@ public class SwaggerConfig {
 
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.OAS_30) // 使用 OAS 3.0
+        return new Docket(DocumentationType.OAS_30)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("jiang.luo.travelsystem.controller")) // 选择所有API
-                .paths(PathSelectors.any()) // 选择所有路径
+                .apis(RequestHandlerSelectors.basePackage("jiang.luo.travelsystem.controller"))
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo()); // 添加API信息
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("旅游业务管理系统") // API文档标题
-                .description("大模型+软件工程基础实验") // API文档描述
-                .version("1.0") // 版本
-//                .contact(new Contact("Name", "URL", "Email")) // 联系人信息
+                .title("旅游业务管理系统")
+                .description("大模型+软件工程基础实验")
+                .version("1.0")
+//                .contact(new Contact("Name", "URL", "Email"))
                 .build();
     }
 }

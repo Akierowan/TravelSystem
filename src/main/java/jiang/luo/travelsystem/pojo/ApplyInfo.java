@@ -71,6 +71,11 @@ public class ApplyInfo implements Serializable {
      */
     private Integer balanceStatus;
 
+    /**
+     * 数据更新时间
+     */
+    private Date updateTime;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
@@ -91,6 +96,7 @@ public class ApplyInfo implements Serializable {
         sb.append(", paymentSendDate=").append(paymentSendDate);
         sb.append(", balanceStatus=").append(balanceStatus);
         sb.append(", principalName=").append(principalName);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
