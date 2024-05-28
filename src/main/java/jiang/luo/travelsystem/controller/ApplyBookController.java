@@ -72,7 +72,7 @@ public class ApplyBookController {
     }
 
     @ApiOperation("取消参加")
-    @PostMapping("cancel")
+    @PutMapping("cancel")
     public Result cancelParticipation(@RequestParam Integer id){
         try {
             applyBookService.cancelParticipation(id);
