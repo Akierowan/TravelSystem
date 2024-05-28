@@ -2,6 +2,7 @@ package jiang.luo.travelsystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.SerializationUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jiang.luo.travelsystem.pojo.PageQueryDTO;
@@ -42,22 +43,15 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
         if (pathBookDTO.getId() != null) {
             pathBook.setId(null);
             pathBook.setLastVersionId(pathBookDTO.getId());
+
+            //逻辑删除原路线
+            PathBook del = pathBookMapper.selectById(pathBookDTO.getId());
+            del.setDeleteStatus(1);
+            del.setUpdateTime(LocalDateTime.now());
+            pathBookMapper.updateById(del);
         }
         pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.insert(pathBook);
-    }
-
-    /**
-     * 逻辑删除路线
-     * @param id
-     */
-    @Override
-    public void deletePathLogicallyById(Integer id) {
-        PathBook pathBook = new PathBook();
-        pathBook.setId(id);
-        pathBook.setDeleteStatus(1);
-        pathBook.setUpdateTime(LocalDateTime.now());
-        pathBookMapper.updateById(pathBook);
     }
 
     /**

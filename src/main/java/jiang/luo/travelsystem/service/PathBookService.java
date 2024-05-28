@@ -21,12 +21,6 @@ public interface PathBookService extends IService<PathBook> {
 
 
     /**
-     * 逻辑删除路线
-     * @param id
-     */
-    void deletePathLogicallyById(Integer id);
-
-    /**
      * 分页查询
      * @param pageQueryDTO
      * @return

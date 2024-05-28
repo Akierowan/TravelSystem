@@ -48,22 +48,6 @@ public class PathBookController {
     }
 
     /**
-     * 逻辑删除路线
-     * @param id
-     * @return
-     */
-    @ApiOperation("逻辑删除路线")
-    @DeleteMapping("/{id}")
-    public Result delete(@PathVariable Integer id){
-        try {
-            pathBookService.deletePathLogicallyById(id);
-            return Result.success();
-        } catch (Exception e) {
-            return Result.error("删除路线失败");
-        }
-    }
-
-    /**
      * 根据id查询路线信息
      * @param id
      * @return
