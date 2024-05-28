@@ -135,6 +135,27 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         financeBookMapper.insert(financeBook);
     }
 
+    /**
+     * 支付余款
+     */
+    @Override
+    public void payBalance(Integer id) {
+        // 修改订单表中的余款支付状态
+        ApplyInfo applyInfo = new ApplyInfo();
+        applyInfo.setBalanceStatus(1);
+        applyInfo.setId(id);
+        applyInfo.setUpdateTime(LocalDateTime.now());
+        applyInfoMapper.updateById(applyInfo);
+
+        //添加本次交易到财务报表
+        applyInfo = applyInfoMapper.selectById(id);
+        FinanceBook financeBook = new FinanceBook();
+        financeBook.setAmount(applyInfo.getTotalPrice() - applyInfo.getDeposit());
+        financeBook.setUpdateTime(LocalDateTime.now());
+        financeBook.setType(0);
+        financeBookMapper.insert(financeBook);
+    }
+
 
 }
 

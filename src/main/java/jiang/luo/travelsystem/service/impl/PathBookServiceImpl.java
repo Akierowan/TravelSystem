@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
 * @author lenovo
@@ -34,8 +35,8 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
     public void savePathBook(PathBookDTO pathBookDTO) throws Exception {
         PathBook pathBook = new PathBook();
         BeanUtils.copyProperties(pathBookDTO, pathBook);
-        // 若传来的pathBookDTO的id不为空则是变更路线，否则为新增路线
-        if (pathBookDTO.getId() != null) {
+
+        if (pathBookDTO.getId() != null) { // 若传来的pathBookDTO的id不为空则是变更路线
             pathBook.setId(null);
             pathBook.setLastVersionId(pathBookDTO.getId());
             //逻辑删除原路线
@@ -46,6 +47,13 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
             del.setDeleteStatus(1);
             del.setUpdateTime(LocalDateTime.now());
             pathBookMapper.updateById(del);
+        } else { // 此为新增路线
+            QueryWrapper<PathBook> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("path_number", pathBookDTO.getPathNumber());
+            List<PathBook> pathBooks = pathBookMapper.selectList(queryWrapper);
+            if (!pathBooks.isEmpty()) {
+                throw new Exception();
+            }
         }
         pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.insert(pathBook);

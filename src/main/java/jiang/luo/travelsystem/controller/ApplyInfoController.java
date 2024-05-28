@@ -49,6 +49,20 @@ public class ApplyInfoController {
     }
 
     /**
+     * 支付余款
+     */
+    @ApiOperation("支付余款")
+    @PostMapping("/paybalance")
+    public Result payBalance(@RequestParam Integer id) {
+        try {
+            applyInfoService.payBalance(id);
+            return Result.success();
+        } catch (Exception e) {
+            return Result.error("余款支付失败");
+        }
+    }
+
+    /**
      * 分页查询
      */
     @ApiOperation("分页查询")
