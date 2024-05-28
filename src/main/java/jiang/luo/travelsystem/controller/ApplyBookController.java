@@ -1,6 +1,5 @@
 package jiang.luo.travelsystem.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import jiang.luo.travelsystem.pojo.*;
@@ -18,8 +17,6 @@ public class ApplyBookController {
 
     /**
      * 提交旅游申请书
-     * @param applyBookDTO
-     * @return
      */
     @ApiOperation("提交旅游申请书")
     @PostMapping("save")
@@ -34,8 +31,6 @@ public class ApplyBookController {
 
     /**
      * 分页查询
-     * @param pageQueryDTO
-     * @return
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
@@ -50,8 +45,6 @@ public class ApplyBookController {
 
     /**
      * 根据id查找旅游申请书
-     * @param id
-     * @return
      */
     @ApiOperation("根据id查找旅游申请书")
     @GetMapping
@@ -66,8 +59,6 @@ public class ApplyBookController {
 
     /**
      * 变更旅游申请书
-     * @param applyBookDTO
-     * @return
      */
     @ApiOperation("变更旅游申请书")
     @PostMapping("/alter")
@@ -87,7 +78,6 @@ public class ApplyBookController {
             applyBookService.cancelParticipation(id);
             return Result.success();
         } catch (Exception e) {
-            e.printStackTrace();
             return Result.error("取消参加失败");
         }
     }

@@ -19,11 +19,6 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
-/**
-* @author lenovo
-* @description 针对表【apply_book】的数据库操作Service实现
-* @createDate 2024-05-25 12:44:08
-*/
 @Service
 public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook>
     implements ApplyBookService{
@@ -39,7 +34,6 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
 
     /**
      * 将新的申请书，插入到数据库中
-     * @param applyBookDTO
      */
     @Override
     public void saveApplyBook(ApplyBookDTO applyBookDTO) {
@@ -56,7 +50,6 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
 
     /**
      * 更改申请书
-     * @param applyBookDTO
      */
     @Override
     public void updateApplyBook(ApplyBookDTO applyBookDTO) {
@@ -67,8 +60,6 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
 
     /**
      * 分页查询
-     * @param pageQueryDTO
-     * @return
      */
     @Override
     public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
@@ -82,7 +73,6 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
 
     /**
      * 取消参加（单人）
-     * @param id
      */
     @Override
     @Transactional

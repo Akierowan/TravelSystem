@@ -18,11 +18,6 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-/**
-* @author lenovo
-* @description 针对表【order_info】的数据库操作Service实现
-* @createDate 2024-05-26 18:23:23
-*/
 @Service
 public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo>
     implements ApplyInfoService {
@@ -38,12 +33,13 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
 
     /**
      * 第一步申请
-     * @param firstApplyDTO
      */
     @Override
     public Integer saveFirstApply(FirstApplyDTO firstApplyDTO) {
-        Integer pathId = firstApplyDTO.getPathId();
-        PathBook path = pathBookMapper.selectById(pathId);
+        QueryWrapper<PathBook> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("path_number", firstApplyDTO.getPathNumber());
+        queryWrapper.eq("delete_status", 0);
+        PathBook path = pathBookMapper.selectOne(queryWrapper);
         double totalPrice = path.getAdultPrice() * firstApplyDTO.getAdultNumber() + path.getChildPrice() * firstApplyDTO.getChildNumber();
         // 计算距离出发日期的天数
         long daysDiff = ChronoUnit.DAYS.between(firstApplyDTO.getDepartureDate(), LocalDate.now());
@@ -69,7 +65,6 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
 
     /**
      * 支付订金
-     * @param id
      */
     @Override
     @Transactional
@@ -92,8 +87,6 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
 
     /**
      * 分页查询
-     * @param pageQueryDTO
-     * @return
      */
     @Override
     public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
@@ -106,7 +99,6 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
 
     /**
      * 取消整个申请
-     * @param id
      */
     @Override
     @Transactional

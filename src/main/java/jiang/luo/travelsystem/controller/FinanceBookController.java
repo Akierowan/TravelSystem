@@ -19,7 +19,6 @@ public class FinanceBookController {
 
     /**
      * 财务报表分页查询
-     * @return
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")

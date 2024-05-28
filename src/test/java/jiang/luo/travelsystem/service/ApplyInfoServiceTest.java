@@ -16,10 +16,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -48,22 +49,57 @@ public class ApplyInfoServiceTest {
     @Test
     public void testSaveFirstApply() {
         FirstApplyDTO firstApplyDTO = new FirstApplyDTO();
-        firstApplyDTO.setPathId(1);
+        firstApplyDTO.setPathNumber("123");
         firstApplyDTO.setAdultNumber(2);
         firstApplyDTO.setChildNumber(1);
-        firstApplyDTO.setDepartureDate(LocalDate.now().plusDays(40));
+        firstApplyDTO.setDepartureDate(LocalDate.now().plusDays(20));
         firstApplyDTO.setPrincipalName("John Doe");
 
+        // 模拟 PathBook 对象
         PathBook pathBook = new PathBook();
-        pathBook.setAdultPrice(1000.0);
-        pathBook.setChildPrice(500.0);
+        pathBook.setAdultPrice(100.0);
+        pathBook.setChildPrice(50.0);
 
-        when(pathBookMapper.selectById(1)).thenReturn(pathBook);
+        // 设置模拟查询条件
+        QueryWrapper<PathBook> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("path_number", firstApplyDTO.getPathNumber());
+        queryWrapper.eq("delete_status", 0);
+
+        // 模拟查询 PathBook
+        when(pathBookMapper.selectOne(queryWrapper)).thenReturn(pathBook);
 
         Integer applyInfoId = applyInfoService.saveFirstApply(firstApplyDTO);
 
         verify(applyInfoMapper, times(1)).insert(any(ApplyInfo.class));
     }
+
+    @Test
+    public void testSaveFirstApply2() {
+        // Mock pathBookMapper.selectOne 方法返回的 PathBook 对象
+        PathBook pathBook = new PathBook();
+        pathBook.setAdultPrice(100.0);
+        pathBook.setChildPrice(50.0);
+
+        when(pathBookMapper.selectOne(any())).thenReturn(pathBook);
+
+        // 构造测试数据
+        FirstApplyDTO firstApplyDTO = new FirstApplyDTO();
+        firstApplyDTO.setPathNumber("12345");
+        firstApplyDTO.setAdultNumber(2);
+        firstApplyDTO.setChildNumber(1);
+        firstApplyDTO.setDepartureDate(LocalDate.now().plusDays(20));
+        firstApplyDTO.setPrincipalName("John Doe");
+
+        // 执行方法
+        Integer id = applyInfoService.saveFirstApply(firstApplyDTO);
+
+        // 验证结果
+        assertEquals(Optional.of(1), id); // 假设返回的 ID 是 1
+
+        // 验证 pathBookMapper.selectOne 方法是否被调用了一次，并且传递了正确的参数
+        verify(pathBookMapper, times(1)).selectOne(any(QueryWrapper.class));
+    }
+
 
     @Test
     public void testPayDeposit() {

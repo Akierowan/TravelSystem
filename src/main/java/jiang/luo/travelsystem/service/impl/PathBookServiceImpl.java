@@ -1,23 +1,19 @@
 package jiang.luo.travelsystem.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.SerializationUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 import jiang.luo.travelsystem.pojo.PathBook;
 import jiang.luo.travelsystem.pojo.PathBookDTO;
 import jiang.luo.travelsystem.service.PathBookService;
-import jiang.luo.travelsystem.mapper.PathBookMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
 * @author lenovo
@@ -33,8 +29,6 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
 
     /**
      * 新增或变更路线
-     * @param pathBookDTO
-     * @return
      */
     @Override
     public void savePathBook(PathBookDTO pathBookDTO) throws Exception {
@@ -59,8 +53,6 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
 
     /**
      * 分页查询
-     * @param pageQueryDTO
-     * @return
      */
     @Override
     public PageResult pageQuery(PageQueryDTO pageQueryDTO) {

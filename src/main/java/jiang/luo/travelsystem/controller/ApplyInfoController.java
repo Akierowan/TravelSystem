@@ -19,8 +19,6 @@ public class ApplyInfoController {
 
     /**
      * 第一次申请
-     * @param firstApplyDTO
-     * @return
      */
     @ApiOperation("初次提交申请")
     @PostMapping("/firstapply")
@@ -38,8 +36,6 @@ public class ApplyInfoController {
 
     /**
      * 支付订金
-     * @param id
-     * @return
      */
     @ApiOperation("支付订金")
     @PutMapping("/paydeposit")
@@ -54,8 +50,6 @@ public class ApplyInfoController {
 
     /**
      * 分页查询
-     * @param pageQueryDTO
-     * @return
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
@@ -71,8 +65,6 @@ public class ApplyInfoController {
 
     /**
      * 取消整个申请
-     * @param id
-     * @return
      */
     @ApiOperation("取消整个申请")
     @PutMapping("/cancel")

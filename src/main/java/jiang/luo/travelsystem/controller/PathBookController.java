@@ -17,7 +17,6 @@ public class PathBookController {
 
     /**
      * 旅游路线分页查询
-     * @return
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
@@ -32,8 +31,6 @@ public class PathBookController {
     }
     /**
      * 新增或变更路线
-     * @param pathBookDTO
-     * @return
      */
     @ApiOperation("新增或变更路线")
     @PostMapping("save")
@@ -48,8 +45,6 @@ public class PathBookController {
 
     /**
      * 根据id查询路线信息
-     * @param id
-     * @return
      */
     @ApiOperation("根据id查询路线信息")
     @GetMapping
