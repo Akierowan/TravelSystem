@@ -16,8 +16,9 @@ public interface PathBookService extends IService<PathBook> {
     /**
      * 新增或变更路线
      * @param pathBookDTO
+     * @return
      */
-    void savePathBook(PathBookDTO pathBookDTO);
+    boolean savePathBook(PathBookDTO pathBookDTO);
 
 
     /**

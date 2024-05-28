@@ -30,7 +30,6 @@ public class PathBookController {
             return Result.error("分页查询失败");
         }
     }
-
     /**
      * 新增或变更路线
      * @param pathBookDTO
@@ -40,8 +39,10 @@ public class PathBookController {
     @PostMapping("save")
     public Result save(@RequestBody PathBookDTO pathBookDTO){
         try {
-            pathBookService.savePathBook(pathBookDTO);
-            return Result.success();
+            if (pathBookService.savePathBook(pathBookDTO)) {
+                return Result.success();
+            }
+            return Result.error("保存路线失败");
         } catch (Exception e) {
             return Result.error("保存路线失败");
         }

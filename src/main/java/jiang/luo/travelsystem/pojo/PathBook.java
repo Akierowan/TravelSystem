@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -16,6 +17,7 @@ import lombok.Data;
  */
 @TableName(value ="path_book")
 @Data
+@NoArgsConstructor
 public class PathBook implements Serializable {
     /**
      * 
