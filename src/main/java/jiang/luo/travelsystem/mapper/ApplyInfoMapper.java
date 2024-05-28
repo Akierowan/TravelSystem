@@ -1,6 +1,6 @@
 package jiang.luo.travelsystem.mapper;
 
-import jiang.luo.travelsystem.pojo.OrderInfo;
+import jiang.luo.travelsystem.pojo.ApplyInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 * @Entity jiang.luo.travelsystem.pojo.OrderInfo
 */
 @Mapper
-public interface OrderInfoMapper extends BaseMapper<OrderInfo> {
+public interface ApplyInfoMapper extends BaseMapper<ApplyInfo> {
 
 }
 

@@ -1,6 +1,6 @@
 package jiang.luo.travelsystem.mapper;
 
-import jiang.luo.travelsystem.pojo.OrderInfo;
+import jiang.luo.travelsystem.pojo.ApplyInfo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,49 +12,49 @@ import java.util.List;
 public class OrderInfoMapperTest {
 
     @Autowired
-    private OrderInfoMapper orderInfoMapper;
+    private ApplyInfoMapper applyInfoMapper;
 
     @Test
     public void testInsert() {
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setDeposit(1000.0);
-        orderInfo.setApplyBookId(1);
-        orderInfo.setTotalPrice(2000.0);
-        orderInfo.setDepositStatus(1);
-        orderInfo.setCancelStatus(0);
-        orderInfo.setPayDeadline(new Date());
-        orderInfo.setPaymentSendDate(new Date());
-        orderInfo.setBalanceStatus(1);
+        ApplyInfo applyInfo = new ApplyInfo();
+        applyInfo.setDeposit(1000.0);
+        applyInfo.setApplyBookId(1);
+        applyInfo.setTotalPrice(2000.0);
+        applyInfo.setDepositStatus(1);
+        applyInfo.setCancelStatus(0);
+        applyInfo.setPayDeadline(new Date());
+        applyInfo.setPaymentSendDate(new Date());
+        applyInfo.setBalanceStatus(1);
 
-        int result = orderInfoMapper.insert(orderInfo);
+        int result = applyInfoMapper.insert(applyInfo);
         Assertions.assertEquals(1, result);
     }
 
     @Test
     public void testSelectById() {
-        OrderInfo orderInfo = orderInfoMapper.selectById(1);
-        Assertions.assertNotNull(orderInfo);
-        System.out.println(orderInfo);
+        ApplyInfo applyInfo = applyInfoMapper.selectById(1);
+        Assertions.assertNotNull(applyInfo);
+        System.out.println(applyInfo);
     }
 
     @Test
     public void testUpdate() {
-        OrderInfo orderInfo = orderInfoMapper.selectById(1);
-        orderInfo.setDeposit(1500.0);
-        int result = orderInfoMapper.updateById(orderInfo);
+        ApplyInfo applyInfo = applyInfoMapper.selectById(1);
+        applyInfo.setDeposit(1500.0);
+        int result = applyInfoMapper.updateById(applyInfo);
         Assertions.assertEquals(1, result);
     }
 
     @Test
     public void testDelete() {
-        int result = orderInfoMapper.deleteById(1);
+        int result = applyInfoMapper.deleteById(1);
         Assertions.assertEquals(1, result);
     }
 
     @Test
     public void testSelectAll() {
-        List<OrderInfo> orderInfos = orderInfoMapper.selectList(null);
-        Assertions.assertNotNull(orderInfos);
-        orderInfos.forEach(System.out::println);
+        List<ApplyInfo> applyInfos = applyInfoMapper.selectList(null);
+        Assertions.assertNotNull(applyInfos);
+        applyInfos.forEach(System.out::println);
     }
 }

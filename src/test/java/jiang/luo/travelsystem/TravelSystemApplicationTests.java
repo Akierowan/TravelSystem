@@ -1,13 +1,11 @@
 package jiang.luo.travelsystem;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jiang.luo.travelsystem.mapper.ApplyBookMapper;
-import jiang.luo.travelsystem.mapper.OrderInfoMapper;
+import jiang.luo.travelsystem.mapper.ApplyInfoMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.ApplyBook;
-import jiang.luo.travelsystem.pojo.OrderInfo;
-import jiang.luo.travelsystem.pojo.PageResult;
+import jiang.luo.travelsystem.pojo.ApplyInfo;
 import jiang.luo.travelsystem.pojo.PathBook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +22,11 @@ class TravelSystemApplicationTests {
     void testPay(){
         int id = 2;
         // 修改订单表中的订单支付状态
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setDepositStatus(1);
-        orderInfo.setId(id);
-        orderInfoMapper.updateById(orderInfo);
-        System.out.println(orderInfo.getDeposit());
+        ApplyInfo applyInfo = new ApplyInfo();
+        applyInfo.setDepositStatus(1);
+        applyInfo.setId(id);
+        applyInfoMapper.updateById(applyInfo);
+        System.out.println(applyInfo.getDeposit());
     }
     @Test
     void testPage(){
@@ -50,7 +48,7 @@ class TravelSystemApplicationTests {
     @Autowired
     ApplyBookMapper applyBookMapper;
     @Autowired
-    OrderInfoMapper orderInfoMapper;
+    ApplyInfoMapper applyInfoMapper;
     @Autowired
     PathBookMapper pathBookMapper;
 
@@ -66,31 +64,31 @@ class TravelSystemApplicationTests {
 
     @Test
     void test_insert(){
-        OrderInfo orderInfo = new OrderInfo();
+        ApplyInfo applyInfo = new ApplyInfo();
 
         Map<String,Object> mp = new HashMap<>();
         mp.put("apply_book_id",12);
 
-        List<OrderInfo> orderInfos = orderInfoMapper.selectByMap(mp);
+        List<ApplyInfo> applyInfos = applyInfoMapper.selectByMap(mp);
 
-        orderInfos.forEach(System.out::println);
+        applyInfos.forEach(System.out::println);
 
     }
 
     @Test
         //测试orderinfo
     void test3(){
-        OrderInfo orderInfo = new OrderInfo();
+        ApplyInfo applyInfo = new ApplyInfo();
 
 
-        orderInfo.setId(0);
-        orderInfo.setDeposit(11.11);
-        orderInfo.setApplyBookId(12);
-        orderInfo.setTotalPrice(111.11);
-        orderInfo.setDepositStatus(0);
-        orderInfo.setCancelStatus(0);
+        applyInfo.setId(0);
+        applyInfo.setDeposit(11.11);
+        applyInfo.setApplyBookId(12);
+        applyInfo.setTotalPrice(111.11);
+        applyInfo.setDepositStatus(0);
+        applyInfo.setCancelStatus(0);
 
-        int i = orderInfoMapper.insert(orderInfo);
+        int i = applyInfoMapper.insert(applyInfo);
 
         System.out.println("成功插入" + i + "条记录");
     }

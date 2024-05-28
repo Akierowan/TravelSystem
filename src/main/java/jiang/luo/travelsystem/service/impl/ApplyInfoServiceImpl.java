@@ -7,10 +7,10 @@ import jiang.luo.travelsystem.mapper.FinanceBookMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.FinanceBook;
 import jiang.luo.travelsystem.pojo.FirstApplyDTO;
-import jiang.luo.travelsystem.pojo.OrderInfo;
+import jiang.luo.travelsystem.pojo.ApplyInfo;
 import jiang.luo.travelsystem.pojo.PathBook;
-import jiang.luo.travelsystem.service.OrderInfoService;
-import jiang.luo.travelsystem.mapper.OrderInfoMapper;
+import jiang.luo.travelsystem.service.ApplyInfoService;
+import jiang.luo.travelsystem.mapper.ApplyInfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,11 +23,11 @@ import java.util.List;
 * @createDate 2024-05-26 18:23:23
 */
 @Service
-public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo>
-    implements OrderInfoService{
+public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo>
+    implements ApplyInfoService {
 
     @Autowired
-    private OrderInfoMapper orderInfoMapper;
+    private ApplyInfoMapper applyInfoMapper;
     @Autowired
     private PathBookMapper pathBookMapper;
     @Autowired
@@ -50,25 +50,25 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
         } else if (daysDiff >= 30) {
             deposit *= 0.2;
         }
-        OrderInfo orderInfo = OrderInfo.builder()
-                .name(firstApplyDTO.getName())
+        ApplyInfo applyInfo = ApplyInfo.builder()
+                .principalName(firstApplyDTO.getName())
                 .deposit(deposit)
                 .totalPrice(totalPrice)
                 .build();
-        orderInfoMapper.insert(orderInfo);
-        return orderInfo.getId();
+        applyInfoMapper.insert(applyInfo);
+        return applyInfo.getId();
     }
 
     /**
-     * 根据姓名查找订单信息
+     * 根据负责人姓名查找订单信息
      * @param name
      * @return
      */
     @Override
-    public List<OrderInfo> getByName(String name) {
-        QueryWrapper<OrderInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name", name);
-        return orderInfoMapper.selectList(queryWrapper);
+    public List<ApplyInfo> getByName(String name) {
+        QueryWrapper<ApplyInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("principal_name", name);
+        return applyInfoMapper.selectList(queryWrapper);
     }
 
     /**
@@ -78,15 +78,15 @@ public class OrderInfoServiceImpl extends ServiceImpl<OrderInfoMapper, OrderInfo
     @Override
     public void payDeposit(Integer id) {
         // 修改订单表中的订单支付状态
-        OrderInfo orderInfo = new OrderInfo();
-        orderInfo.setDepositStatus(1);
-        orderInfo.setId(id);
-        orderInfoMapper.updateById(orderInfo);
+        ApplyInfo applyInfo = new ApplyInfo();
+        applyInfo.setDepositStatus(1);
+        applyInfo.setId(id);
+        applyInfoMapper.updateById(applyInfo);
 
         //添加本次交易到财务报表
-        orderInfo = orderInfoMapper.selectById(id);
+        applyInfo = applyInfoMapper.selectById(id);
         FinanceBook financeBook = new FinanceBook();
-        financeBook.setAmount(orderInfo.getDeposit());
+        financeBook.setAmount(applyInfo.getDeposit());
         financeBook.setUpdateTime(new DateTime());
         financeBook.setType(0);
         financeBookMapper.insert(financeBook);

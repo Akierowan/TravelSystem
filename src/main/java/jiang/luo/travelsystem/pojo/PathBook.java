@@ -65,45 +65,6 @@ public class PathBook implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        PathBook other = (PathBook) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getPathNumber() == null ? other.getPathNumber() == null : this.getPathNumber().equals(other.getPathNumber()))
-            && (this.getPath() == null ? other.getPath() == null : this.getPath().equals(other.getPath()))
-            && (this.getAdultPrice() == null ? other.getAdultPrice() == null : this.getAdultPrice().equals(other.getAdultPrice()))
-            && (this.getChildPrice() == null ? other.getChildPrice() == null : this.getChildPrice().equals(other.getChildPrice()))
-            && (this.getDiscount() == null ? other.getDiscount() == null : this.getDiscount().equals(other.getDiscount()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getDeleteStatus() == null ? other.getDeleteStatus() == null : this.getDeleteStatus().equals(other.getDeleteStatus())
-            && (this.getLastVersionId() == null ? other.getLastVersionId() == null : this.getLastVersionId()).equals(other.getLastVersionId()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getPathNumber() == null) ? 0 : getPathNumber().hashCode());
-        result = prime * result + ((getPath() == null) ? 0 : getPath().hashCode());
-        result = prime * result + ((getAdultPrice() == null) ? 0 : getAdultPrice().hashCode());
-        result = prime * result + ((getChildPrice() == null) ? 0 : getChildPrice().hashCode());
-        result = prime * result + ((getDiscount() == null) ? 0 : getDiscount().hashCode());
-        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-        result = prime * result + ((getDeleteStatus() == null) ? 0 : getDeleteStatus().hashCode());
-        result = prime * result + ((getLastVersionId() == null) ? 0 : getLastVersionId().hashCode());
-        return result;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());

@@ -2,23 +2,22 @@ package jiang.luo.travelsystem.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import jiang.luo.travelsystem.pojo.FirstApplyDTO;
-import jiang.luo.travelsystem.pojo.OrderInfo;
+import jiang.luo.travelsystem.pojo.ApplyInfo;
 import jiang.luo.travelsystem.pojo.Result;
-import jiang.luo.travelsystem.service.OrderInfoService;
+import jiang.luo.travelsystem.service.ApplyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags="订单信息相关接口")
+@Api(tags="申请信息相关接口")
 @RestController
-@RequestMapping("/orderinfo")
+@RequestMapping("/applyinfo")
 @CrossOrigin
-public class OrderInfoController {
+public class ApplyInfoController {
     @Autowired
-    private OrderInfoService orderInfoService;
+    private ApplyInfoService applyInfoService;
 
     /**
      * 第一次申请
@@ -29,9 +28,10 @@ public class OrderInfoController {
     @PostMapping("/firstapply")
     public Result firstApply(@RequestBody FirstApplyDTO firstApplyDTO) {
         try {
-            orderInfoService.saveFirstApply(firstApplyDTO);
+            applyInfoService.saveFirstApply(firstApplyDTO);
             return Result.success();
         } catch (Exception e) {
+            e.printStackTrace();
             return Result.error("初次申请失败");
         }
     }
@@ -41,14 +41,15 @@ public class OrderInfoController {
      * @param name
      * @return
      */
-    @ApiOperation("根据姓名查找订单信息")
+    @ApiOperation("根据负责人姓名查找申请信息")
     @GetMapping
-    public Result<List<OrderInfo>> getByName(@RequestParam String name){
+    public Result<List<ApplyInfo>> getByName(@RequestParam String name){
         try {
-            List<OrderInfo> orderInfoList = orderInfoService.getByName(name);
-            return Result.success(orderInfoList);
+            List<ApplyInfo> applyInfoList = applyInfoService.getByName(name);
+            return Result.success(applyInfoList);
         } catch (Exception e) {
-            return Result.error("查找订单信息失败");
+            e.printStackTrace();
+            return Result.error("查找申请信息失败");
         }
     }
 
@@ -59,12 +60,14 @@ public class OrderInfoController {
      */
     @ApiOperation("支付订金")
     @PostMapping("/paydeposit")
-    public Result payDeposit(@RequestBody Integer id) {
+    public Result payDeposit(@RequestParam Integer id) {
         try {
-            orderInfoService.payDeposit(id);
+            applyInfoService.payDeposit(id);
             return Result.success();
         } catch (Exception e) {
             return Result.error("订金支付失败");
         }
     }
+
+
 }

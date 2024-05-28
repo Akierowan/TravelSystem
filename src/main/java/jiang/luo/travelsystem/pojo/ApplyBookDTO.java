@@ -75,7 +75,9 @@ public class ApplyBookDTO {
      */
     private String phoneVice;
 
-
-
+    /**
+     * 申请信息id
+     */
+    private Integer applyInfoId;
 
 }

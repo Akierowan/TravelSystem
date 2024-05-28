@@ -1,7 +1,7 @@
 package jiang.luo.travelsystem.service;
 
 import jiang.luo.travelsystem.pojo.FirstApplyDTO;
-import jiang.luo.travelsystem.pojo.OrderInfo;
+import jiang.luo.travelsystem.pojo.ApplyInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 * @description 针对表【order_info】的数据库操作Service
 * @createDate 2024-05-26 18:23:23
 */
-public interface OrderInfoService extends IService<OrderInfo> {
+public interface ApplyInfoService extends IService<ApplyInfo> {
 
     /**
      * 第一次提交申请
@@ -22,11 +22,11 @@ public interface OrderInfoService extends IService<OrderInfo> {
 
 
     /**
-     * 根据名字来查找订单信息
+     * 根据负责人名字来查找订单信息
      * @param name
      * @return
      */
-    List<OrderInfo> getByName(String name);
+    List<ApplyInfo> getByName(String name);
 
 
     /**
@@ -34,5 +34,11 @@ public interface OrderInfoService extends IService<OrderInfo> {
      * @param id
      */
     void payDeposit(Integer id);
+
+    /**
+     * 取消申请
+     * @param id
+     */
+//    void cancel(Integer id);  //TODO how to implement?
 
 }
