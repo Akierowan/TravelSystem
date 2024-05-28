@@ -36,10 +36,6 @@ public class ApplyInfo implements Serializable {
      */
     private Double deposit;
 
-    /**
-     * 申请书编号
-     */
-    private Integer applyBookId;
 
     /**
      * 所选旅游路线总价格
@@ -88,7 +84,6 @@ public class ApplyInfo implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", deposit=").append(deposit);
-        sb.append(", applyBookId=").append(applyBookId);
         sb.append(", totalPrice=").append(totalPrice);
         sb.append(", depositStatus=").append(depositStatus);
         sb.append(", cancelStatus=").append(cancelStatus);

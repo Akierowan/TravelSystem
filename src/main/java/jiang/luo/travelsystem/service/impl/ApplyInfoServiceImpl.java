@@ -63,18 +63,6 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
     }
 
     /**
-     * 根据负责人姓名查找订单信息
-     * @param name
-     * @return
-     */
-    @Override
-    public List<ApplyInfo> getByName(String name) {
-        QueryWrapper<ApplyInfo> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("principal_name", name);
-        return applyInfoMapper.selectList(queryWrapper);
-    }
-
-    /**
      * 支付订金
      * @param id
      */

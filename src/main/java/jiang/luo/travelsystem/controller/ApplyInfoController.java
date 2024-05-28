@@ -34,22 +34,7 @@ public class ApplyInfoController {
         }
     }
 
-    /**
-     * 根据姓名查找订单信息  TODO 可以删除？
-     * @param name
-     * @return
-     */
-    @ApiOperation("根据负责人姓名查找申请信息")
-    @GetMapping
-    public Result<List<ApplyInfo>> getByName(@RequestParam String name){
-        try {
-            List<ApplyInfo> applyInfoList = applyInfoService.getByName(name);
-            return Result.success(applyInfoList);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Result.error("查找申请信息失败");
-        }
-    }
+
 
     /**
      * 支付订金
@@ -79,6 +64,7 @@ public class ApplyInfoController {
             PageResult pageResult = applyInfoService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);
         } catch (Exception e) {
+            e.printStackTrace();
             return Result.error("分页查询失败");
         }
     }

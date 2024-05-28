@@ -22,15 +22,6 @@ public interface ApplyInfoService extends IService<ApplyInfo> {
      */
     Integer saveFirstApply(FirstApplyDTO firstApplyDTO);
 
-
-    /**
-     * 根据负责人名字来查找订单信息
-     * @param name
-     * @return
-     */
-    List<ApplyInfo> getByName(String name);
-
-
     /**
      * 支付订金
      * @param id
