@@ -33,9 +33,6 @@ public class FinanceBookServiceImpl extends ServiceImpl<FinanceBookMapper, Finan
     @Override
     public PageResult pageQuery(PageQueryDTO pageQueryDTO) {
         Page<FinanceBook> page = new Page<>(pageQueryDTO.getPageNum(), pageQueryDTO.getPageSize());
-        // TODO 条件搜索
-        //QueryWrapper<FinanceBook> queryWrapper = new QueryWrapper<>();
-
         Page<FinanceBook> financeBookPage = financeBookMapper.selectPage(page, null);
         return new PageResult(financeBookPage.getTotal(), financeBookPage.getRecords());
     }

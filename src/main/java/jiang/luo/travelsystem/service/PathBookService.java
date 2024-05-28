@@ -18,7 +18,7 @@ public interface PathBookService extends IService<PathBook> {
      * @param pathBookDTO
      * @return
      */
-    boolean savePathBook(PathBookDTO pathBookDTO);
+    void savePathBook(PathBookDTO pathBookDTO) throws Exception;
 
 
     /**

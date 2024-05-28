@@ -8,18 +8,18 @@ import jiang.luo.travelsystem.mapper.FinanceBookMapper;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.*;
 import jiang.luo.travelsystem.service.impl.ApplyBookServiceImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 import java.util.Collections;
 
-@SpringBootTest
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
 public class ApplyBookServiceTest {
 
     @Mock
@@ -47,12 +47,11 @@ public class ApplyBookServiceTest {
         ApplyBookDTO applyBookDTO = new ApplyBookDTO();
         applyBookDTO.setName("Test");
 
-        ApplyBook applyBook = new ApplyBook();
-        Mockito.when(applyBookMapper.insert(Mockito.any(ApplyBook.class))).thenReturn(1);
+        when(applyBookMapper.insert(any(ApplyBook.class))).thenReturn(1);
 
         applyBookService.saveApplyBook(applyBookDTO);
 
-        Mockito.verify(applyBookMapper, Mockito.times(1)).insert(Mockito.any(ApplyBook.class));
+        verify(applyBookMapper, times(1)).insert(any(ApplyBook.class));
     }
 
     @Test
@@ -61,12 +60,11 @@ public class ApplyBookServiceTest {
         applyBookDTO.setId(1);
         applyBookDTO.setName("Updated Test");
 
-        ApplyBook applyBook = new ApplyBook();
-        Mockito.when(applyBookMapper.updateById(Mockito.any(ApplyBook.class))).thenReturn(1);
+        when(applyBookMapper.updateById(any(ApplyBook.class))).thenReturn(1);
 
         applyBookService.updateApplyBook(applyBookDTO);
 
-        Mockito.verify(applyBookMapper, Mockito.times(1)).updateById(Mockito.any(ApplyBook.class));
+        verify(applyBookMapper, times(1)).updateById(any(ApplyBook.class));
     }
 
     @Test
@@ -79,29 +77,39 @@ public class ApplyBookServiceTest {
         Page<ApplyBook> page = new Page<>(1, 10);
         page.setRecords(Collections.singletonList(new ApplyBook()));
 
-        QueryWrapper<ApplyBook> queryWrapper = new QueryWrapper<>();
-        queryWrapper.like("name", "Test");
-        Mockito.when(applyBookMapper.selectPage(Mockito.any(Page.class), Mockito.any(QueryWrapper.class))).thenReturn(page);
+        when(applyBookMapper.selectPage(any(Page.class), any(QueryWrapper.class))).thenReturn(page);
 
-        Assertions.assertEquals(1, applyBookService.pageQuery(pageQueryDTO).getRecords().size());
+        PageResult result = applyBookService.pageQuery(pageQueryDTO);
+
+        assert result.getRecords().size() == 1;
     }
 
     @Test
     public void testCancelParticipation() {
         ApplyBook applyBook = new ApplyBook();
-        applyBook.setId(1);
-        applyBook.setDepartDate(LocalDateTime.now().toLocalDate().plusDays(20));
+        applyBook.setId(4);
+        applyBook.setDepartDate(LocalDate.now().plusDays(20));
         applyBook.setPathNumber("12345");
+        applyBook.setBirthday(LocalDate.now().minusYears(30));
+        applyBook.setApplyInfoId(1);
 
-        Mockito.when(applyBookMapper.selectById(1)).thenReturn(applyBook);
-        Mockito.when(applyInfoMapper.selectById(applyBook.getApplyInfoId())).thenReturn(new ApplyInfo());
-        Mockito.when(pathBookMapper.selectOne(Mockito.any(QueryWrapper.class))).thenReturn(new PathBook());
-        Mockito.when(financeBookMapper.insert(Mockito.any())).thenReturn(1);
+        ApplyInfo applyInfo = new ApplyInfo();
+        applyInfo.setDepositRatio(0.5);
+        applyInfo.setBalanceStatus(0);
 
-        applyBookService.cancelParticipation(1);
+        PathBook pathBook = new PathBook();
+        pathBook.setAdultPrice(1000.0);
+        pathBook.setChildPrice(500.0);
 
-        Mockito.verify(applyBookMapper, Mockito.times(1)).selectById(1);
-        Mockito.verify(applyBookMapper, Mockito.times(1)).deleteById(1);
-        Mockito.verify(financeBookMapper, Mockito.times(1)).insert(Mockito.any());
+        when(applyBookMapper.selectById(4)).thenReturn(applyBook);
+        when(applyInfoMapper.selectById(1)).thenReturn(applyInfo);
+        when(pathBookMapper.selectOne(any(QueryWrapper.class))).thenReturn(pathBook);
+        when(financeBookMapper.insert(any(FinanceBook.class))).thenReturn(1);
+
+        applyBookService.cancelParticipation(4);
+
+        verify(applyBookMapper, times(1)).selectById(4);
+        verify(applyBookMapper, times(1)).deleteById(4);
+        verify(financeBookMapper, times(1)).insert(any(FinanceBook.class));
     }
 }

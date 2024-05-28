@@ -6,13 +6,6 @@ import jiang.luo.travelsystem.pojo.ApplyBookDTO;
 import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 
-import java.util.function.ToDoubleBiFunction;
-
-/**
-* @author lenovo
-* @description 针对表【apply_book】的数据库操作Service
-* @createDate 2024-05-25 12:44:08
-*/
 public interface ApplyBookService extends IService<ApplyBook> {
 
 

@@ -37,7 +37,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
      * @return
      */
     @Override
-    public boolean savePathBook(PathBookDTO pathBookDTO) {
+    public void savePathBook(PathBookDTO pathBookDTO) throws Exception {
         PathBook pathBook = new PathBook();
         BeanUtils.copyProperties(pathBookDTO, pathBook);
         // 若传来的pathBookDTO的id不为空则是变更路线，否则为新增路线
@@ -47,7 +47,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
             //逻辑删除原路线
             PathBook del = pathBookMapper.selectById(pathBookDTO.getId());
             if (del.getDeleteStatus() == 1) {
-                return false;
+                throw new Exception();
             }
             del.setDeleteStatus(1);
             del.setUpdateTime(LocalDateTime.now());
@@ -55,7 +55,6 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
         }
         pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.insert(pathBook);
-        return true;
     }
 
     /**

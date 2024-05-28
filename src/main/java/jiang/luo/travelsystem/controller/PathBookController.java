@@ -39,10 +39,8 @@ public class PathBookController {
     @PostMapping("save")
     public Result save(@RequestBody PathBookDTO pathBookDTO){
         try {
-            if (pathBookService.savePathBook(pathBookDTO)) {
-                return Result.success();
-            }
-            return Result.error("保存路线失败");
+            pathBookService.savePathBook(pathBookDTO);
+            return Result.success();
         } catch (Exception e) {
             return Result.error("保存路线失败");
         }

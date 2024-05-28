@@ -6,13 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
 
-import java.util.List;
 
-/**
-* @author lenovo
-* @description 针对表【order_info】的数据库操作Service
-* @createDate 2024-05-26 18:23:23
-*/
 public interface ApplyInfoService extends IService<ApplyInfo> {
 
     /**
