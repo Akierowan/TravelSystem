@@ -52,7 +52,7 @@ public class ApplyInfoController {
      * 支付余款
      */
     @ApiOperation("支付余款")
-    @PostMapping("/paybalance")
+    @PutMapping("/paybalance")
     public Result payBalance(@RequestParam Integer id) {
         try {
             applyInfoService.payBalance(id);
