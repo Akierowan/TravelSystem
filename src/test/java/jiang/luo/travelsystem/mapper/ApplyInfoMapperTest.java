@@ -25,7 +25,7 @@ public class ApplyInfoMapperTest {
                 .totalPrice(5000.0)
                 .depositStatus(1)
                 .cancelStatus(0)
-                .payDeadline(new Date())
+                .payDeadline(LocalDate.now())
                 .paymentSendDate(LocalDate.now())
                 .balanceStatus(0)
                 .updateTime(LocalDateTime.now())

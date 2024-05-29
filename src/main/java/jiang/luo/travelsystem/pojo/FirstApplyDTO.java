@@ -17,7 +17,7 @@ public class FirstApplyDTO {
 
     private String pathNumber;
 
-    private LocalDate departureDate;
+    private LocalDate departDate;
 
 
 }

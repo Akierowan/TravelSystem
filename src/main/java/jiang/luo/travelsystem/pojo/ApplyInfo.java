@@ -57,7 +57,7 @@ public class ApplyInfo implements Serializable {
     /**
      * 支付截止日期
      */
-    private Date payDeadline;
+    private LocalDate payDeadline;
 
     /**
      * 交款单发送日期
@@ -78,6 +78,11 @@ public class ApplyInfo implements Serializable {
      * 订金计算比例
      */
     private Double depositRatio;
+
+    /**
+     * 出发日期
+     */
+    private LocalDate departDate;
     // TODO 删除影响？
 //    @TableField(exist = false)
 //    private static final long serialVersionUID = 1L;

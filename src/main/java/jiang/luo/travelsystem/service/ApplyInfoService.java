@@ -33,4 +33,9 @@ public interface ApplyInfoService extends IService<ApplyInfo> {
      */
     void payBalance(Integer id);
 
+    /**
+     * 发送交款单
+     */
+    void sendPayment(Integer id);
+
 }

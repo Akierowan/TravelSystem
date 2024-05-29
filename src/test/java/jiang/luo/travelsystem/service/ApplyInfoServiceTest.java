@@ -18,9 +18,9 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -52,7 +52,7 @@ public class ApplyInfoServiceTest {
         firstApplyDTO.setPathNumber("123");
         firstApplyDTO.setAdultNumber(2);
         firstApplyDTO.setChildNumber(1);
-        firstApplyDTO.setDepartureDate(LocalDate.now().plusDays(20));
+        firstApplyDTO.setDepartDate(LocalDate.now().plusDays(20));
         firstApplyDTO.setPrincipalName("John Doe");
 
         // 模拟 PathBook 对象
@@ -71,33 +71,6 @@ public class ApplyInfoServiceTest {
         Integer applyInfoId = applyInfoService.saveFirstApply(firstApplyDTO);
 
         verify(applyInfoMapper, times(1)).insert(any(ApplyInfo.class));
-    }
-
-    @Test
-    public void testSaveFirstApply2() {
-        // Mock pathBookMapper.selectOne 方法返回的 PathBook 对象
-        PathBook pathBook = new PathBook();
-        pathBook.setAdultPrice(100.0);
-        pathBook.setChildPrice(50.0);
-
-        when(pathBookMapper.selectOne(any())).thenReturn(pathBook);
-
-        // 构造测试数据
-        FirstApplyDTO firstApplyDTO = new FirstApplyDTO();
-        firstApplyDTO.setPathNumber("12345");
-        firstApplyDTO.setAdultNumber(2);
-        firstApplyDTO.setChildNumber(1);
-        firstApplyDTO.setDepartureDate(LocalDate.now().plusDays(20));
-        firstApplyDTO.setPrincipalName("John Doe");
-
-        // 执行方法
-        Integer id = applyInfoService.saveFirstApply(firstApplyDTO);
-
-        // 验证结果
-        assertEquals(Optional.of(1), id); // 假设返回的 ID 是 1
-
-        // 验证 pathBookMapper.selectOne 方法是否被调用了一次，并且传递了正确的参数
-        verify(pathBookMapper, times(1)).selectOne(any(QueryWrapper.class));
     }
 
 

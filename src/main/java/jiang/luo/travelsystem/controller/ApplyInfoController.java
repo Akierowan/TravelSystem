@@ -2,6 +2,7 @@ package jiang.luo.travelsystem.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import jiang.luo.travelsystem.pojo.*;
 import jiang.luo.travelsystem.service.ApplyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +90,21 @@ public class ApplyInfoController {
         } catch (Exception e) {
             e.printStackTrace();
             return Result.error("取消申请失败");
+        }
+    }
+
+    /**
+     * 发送交款单
+     */
+    @ApiOperation("发送交款单")
+    @PutMapping("/sendpayment")
+    public Result sendPayment(@RequestParam Integer id ) {
+        try {
+            applyInfoService.sendPayment(id);
+            return Result.success();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.error("发送交款单失败失败");
         }
     }
 

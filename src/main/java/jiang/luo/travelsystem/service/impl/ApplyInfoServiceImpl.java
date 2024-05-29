@@ -42,7 +42,8 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         PathBook path = pathBookMapper.selectOne(queryWrapper);
         double totalPrice = path.getAdultPrice() * firstApplyDTO.getAdultNumber() + path.getChildPrice() * firstApplyDTO.getChildNumber();
         // 计算距离出发日期的天数
-        long daysDiff = ChronoUnit.DAYS.between(firstApplyDTO.getDepartureDate(), LocalDate.now());
+        LocalDate departDate = firstApplyDTO.getDepartDate();
+        long daysDiff = ChronoUnit.DAYS.between(departDate, LocalDate.now());
         double depositRatio;
         if (daysDiff >= 60) {
             depositRatio = 0.1;
@@ -58,6 +59,8 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
                 .totalPrice(totalPrice)
                 .updateTime(LocalDateTime.now())
                 .depositRatio(depositRatio)
+                .departDate(departDate)
+                .payDeadline(departDate.minusDays(30))
                 .build();
         applyInfoMapper.insert(applyInfo);
         return applyInfo.getId();
@@ -105,7 +108,6 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
     public void cancelApply(Integer id) {
         QueryWrapper<ApplyBook> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("apply_info_id", id);
-        List<ApplyBook> applyBooks = applyBookMapper.selectList(queryWrapper);
         // 删除相关的所有旅游申请书
         applyBookMapper.delete(queryWrapper);
 
@@ -118,7 +120,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         // 添加财务流水到FinanceBook（退款）
         applyInfo = applyInfoMapper.selectById(id);
         double origin = applyInfo.getBalanceStatus() == 0 ? applyInfo.getDeposit() : applyInfo.getTotalPrice();
-        long daysDiff = ChronoUnit.DAYS.between(LocalDate.now(), applyBooks.get(0).getDepartDate());
+        long daysDiff = ChronoUnit.DAYS.between(LocalDate.now(), applyInfo.getDepartDate());
         double amount;
         if (daysDiff >= 30) {
             amount = origin;
@@ -154,6 +156,21 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         financeBook.setUpdateTime(LocalDateTime.now());
         financeBook.setType(0);
         financeBookMapper.insert(financeBook);
+    }
+
+    /**
+     * 发送交款单
+     */
+    @Override
+    public void sendPayment(Integer id) {
+        ApplyInfo applyInfo = applyInfoMapper.selectById(id);
+        LocalDate now = LocalDate.now();
+        applyInfo.setPaymentSendDate(now);
+        // 交款单的发送日期到支付期限的时间间隔不足 10 天 则更新支付期限
+        if(ChronoUnit.DAYS.between(now, applyInfo.getPayDeadline()) < 10) {
+            applyInfo.setPayDeadline(now.plusDays(10));
+        }
+        applyInfoMapper.updateById(applyInfo);
     }
 
 
