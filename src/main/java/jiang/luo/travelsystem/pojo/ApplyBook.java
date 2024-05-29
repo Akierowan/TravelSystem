@@ -1,19 +1,13 @@
 package jiang.luo.travelsystem.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Data;
 
-/**
- * 
- * @TableName apply_book
- */
 @TableName(value ="apply_book")
 @Data
 public class ApplyBook implements Serializable {
@@ -24,7 +18,7 @@ public class ApplyBook implements Serializable {
     private Integer id;
 
     /**
-     * 
+     * 旅游团代码
      */
     private String tourCode;
 
@@ -64,32 +58,32 @@ public class ApplyBook implements Serializable {
     private String address;
 
     /**
-     * 
+     *  邮箱
      */
     private String email;
 
     /**
-     * 
+     * 邮政编码
      */
     private String postalCode;
 
     /**
-     * 
+     * 副联系人姓名
      */
     private String nameVice;
 
     /**
-     * 
+     * 关系
      */
     private String relationship;
 
     /**
-     * 
+     * 副联系地址
      */
     private String addressVice;
 
     /**
-     * 
+     * 副电话
      */
     private String phoneVice;
 
@@ -102,8 +96,4 @@ public class ApplyBook implements Serializable {
      * 申请信息的id
      */
     private Integer applyInfoId;
-    // TODO 删除影响？
-//    @TableField(exist = false)
-//    private static final long serialVersionUID = 1L;
-
 }

@@ -1,9 +1,8 @@
 package jiang.luo.travelsystem.pojo;
 
 import lombok.Data;
-
 import java.time.LocalDate;
-import java.util.Date;
+
 
 @Data
 public class ApplyBookDTO {
@@ -12,7 +11,7 @@ public class ApplyBookDTO {
      */
     Integer id;
     /**
-     *
+     * 邮政编码
      */
     private String tourCode;
 
@@ -52,32 +51,32 @@ public class ApplyBookDTO {
     private String address;
 
     /**
-     *
+     * 邮箱
      */
     private String email;
 
     /**
-     *
+     * 邮政编码
      */
     private String postalCode;
 
     /**
-     *
+     * 副联系人姓名
      */
     private String nameVice;
 
     /**
-     *
+     * 关系
      */
     private String relationship;
 
     /**
-     *
+     * 副联系地址
      */
     private String addressVice;
 
     /**
-     *
+     * 副电话
      */
     private String phoneVice;
 

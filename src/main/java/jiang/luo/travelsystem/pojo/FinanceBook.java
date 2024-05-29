@@ -9,15 +9,11 @@ import java.time.LocalDateTime;
 
 import lombok.Data;
 
-/**
- * 
- * @TableName finance_book
- */
 @TableName(value ="finance_book")
 @Data
 public class FinanceBook implements Serializable {
     /**
-     * 
+     * 主键
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -41,9 +37,5 @@ public class FinanceBook implements Serializable {
      * 对应订单信息
      */
     private Integer applyInfoId;
-
-    @TableField(exist = false)
-    private static final long serialVersionUID = 1L;
-
 
 }

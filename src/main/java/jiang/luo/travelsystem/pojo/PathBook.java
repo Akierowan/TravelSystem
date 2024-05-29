@@ -1,26 +1,20 @@
 package jiang.luo.travelsystem.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * 
- * @TableName path_book
- */
+
 @TableName(value ="path_book")
 @Data
 @NoArgsConstructor
 public class PathBook implements Serializable {
     /**
-     * 
+     * 主键
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -64,8 +58,4 @@ public class PathBook implements Serializable {
      *  上一版本的id
      */
     private Integer lastVersionId;
-    // TODO 删除影响？
-//    @TableField(exist = false)
-//    private static final long serialVersionUID = 1L;
-
 }

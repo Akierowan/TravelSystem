@@ -4,7 +4,12 @@ import lombok.Data;
 
 @Data
 public class PathBookDTO {
+
+    /**
+     * 主键
+     */
     private Integer id;
+
     /**
      * 所选旅游路径的编号
      */
@@ -30,8 +35,4 @@ public class PathBookDTO {
      */
     private String discount;
 
-//    /**
-//     *  上一版本的id
-//     */
-//    private Integer lastVersionId;
 }

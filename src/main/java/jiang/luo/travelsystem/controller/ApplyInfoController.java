@@ -33,8 +33,6 @@ public class ApplyInfoController {
         }
     }
 
-
-
     /**
      * 支付订金
      */
@@ -107,5 +105,4 @@ public class ApplyInfoController {
             return Result.error("发送交款单失败失败");
         }
     }
-
 }
