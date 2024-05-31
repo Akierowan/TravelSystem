@@ -33,5 +33,4 @@ public class Result<T> implements Serializable {
         result.code = 1;
         return result;
     }
-
 }

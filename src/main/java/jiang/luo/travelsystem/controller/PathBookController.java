@@ -42,7 +42,6 @@ public class PathBookController {
             return Result.error("保存路线失败");
         }
     }
-
     /**
      * 根据id查询路线信息
      */
@@ -56,5 +55,4 @@ public class PathBookController {
             return Result.error("无法获取改路线信息");
         }
     }
-
 }
