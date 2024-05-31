@@ -43,7 +43,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         double totalPrice = path.getAdultPrice() * firstApplyDTO.getAdultNumber() + path.getChildPrice() * firstApplyDTO.getChildNumber();
         // 计算距离出发日期的天数
         LocalDate departDate = firstApplyDTO.getDepartDate();
-        long daysDiff = ChronoUnit.DAYS.between(departDate, LocalDate.now());
+        long daysDiff = ChronoUnit.DAYS.between(LocalDate.now(), departDate);
         double depositRatio;
         if (daysDiff >= 60) {
             depositRatio = 0.1;
