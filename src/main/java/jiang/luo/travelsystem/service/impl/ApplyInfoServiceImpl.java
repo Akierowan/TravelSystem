@@ -85,6 +85,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         financeBook.setAmount(applyInfo.getDeposit());
         financeBook.setUpdateTime(LocalDateTime.now());
         financeBook.setType(0);
+        financeBook.setApplyInfoId(id);
         financeBookMapper.insert(financeBook);
     }
 
@@ -155,6 +156,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         financeBook.setAmount(applyInfo.getTotalPrice() - applyInfo.getDeposit());
         financeBook.setUpdateTime(LocalDateTime.now());
         financeBook.setType(0);
+        financeBook.setApplyInfoId(id);
         financeBookMapper.insert(financeBook);
     }
 
