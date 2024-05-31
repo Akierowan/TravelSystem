@@ -44,8 +44,6 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
         applyBook.setUpdateTime(LocalDateTime.now());
 
         applyBookMapper.insert(applyBook);
-
-
     }
 
     /**

@@ -58,7 +58,6 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
         pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.insert(pathBook);
     }
-
     /**
      * 分页查询
      */
