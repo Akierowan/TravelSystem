@@ -5,22 +5,24 @@
 <mapper namespace="jiang.luo.travelsystem.mapper.ApplyInfoMapper">
 
     <resultMap id="BaseResultMap" type="jiang.luo.travelsystem.pojo.ApplyInfo">
-            <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="deposit" column="deposit" jdbcType="FLOAT"/>
-            <result property="applyBookId" column="apply_book_id" jdbcType="INTEGER"/>
-            <result property="totalPrice" column="total_price" jdbcType="FLOAT"/>
-            <result property="depositStatus" column="deposit_status" jdbcType="INTEGER"/>
-            <result property="cancelStatus" column="cancel_status" jdbcType="INTEGER"/>
-            <result property="payDeadline" column="pay_deadline" jdbcType="DATE"/>
-            <result property="paymentSendDate" column="payment_send_date" jdbcType="DATE"/>
-            <result property="balanceStatus" column="balance_status" jdbcType="INTEGER"/>
-            <result property="name" column="name" jdbcType="VARCHAR"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="deposit" column="deposit" jdbcType="FLOAT"/>
+        <result property="totalPrice" column="total_price" jdbcType="FLOAT"/>
+        <result property="depositStatus" column="deposit_status" jdbcType="INTEGER"/>
+        <result property="cancelStatus" column="cancel_status" jdbcType="INTEGER"/>
+        <result property="payDeadline" column="pay_deadline" jdbcType="DATE"/>
+        <result property="paymentSendDate" column="payment_send_date" jdbcType="DATE"/>
+        <result property="balanceStatus" column="balance_status" jdbcType="INTEGER"/>
+        <result property="principalName" column="principal_name" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="depositRatio" column="deposit_ratio" jdbcType="FLOAT"/>
+        <result property="departDate" column="depart_date" jdbcType="DATE"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,deposit,apply_book_id,
-        total_price,deposit_status,cancel_status,
-        pay_deadline,payment_send_date,balance_status,
-        name
+        id,deposit,total_price,
+        deposit_status,cancel_status,pay_deadline,
+        payment_send_date,balance_status,principal_name,
+        update_time,deposit_ratio
     </sql>
 </mapper>

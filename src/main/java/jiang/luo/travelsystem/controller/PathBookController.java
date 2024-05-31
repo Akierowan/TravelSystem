@@ -33,7 +33,7 @@ public class PathBookController {
      * 新增或变更路线
      */
     @ApiOperation("新增或变更路线")
-    @PostMapping("save")
+    @PostMapping("/save")
     public Result save(@RequestBody PathBookDTO pathBookDTO){
         try {
             pathBookService.savePathBook(pathBookDTO);

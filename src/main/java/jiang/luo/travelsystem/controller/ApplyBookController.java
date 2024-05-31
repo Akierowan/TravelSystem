@@ -19,7 +19,7 @@ public class ApplyBookController {
      * 提交旅游申请书
      */
     @ApiOperation("提交旅游申请书")
-    @PostMapping("save")
+    @PostMapping("/save")
     public Result saveApplyBook(@RequestBody ApplyBookDTO applyBookDTO){
         try {
             applyBookService.saveApplyBook(applyBookDTO);

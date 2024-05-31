@@ -20,6 +20,8 @@
             <result property="addressVice" column="address_vice" jdbcType="VARCHAR"/>
             <result property="phoneVice" column="phone_vice" jdbcType="VARCHAR"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="applyInfoId" column="apply_info_id" jdbcType="INTEGER"/>
+            <result property="pathNumber" column="path_number" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -27,6 +29,7 @@
         name,gender,birthday,
         phone,address,email,
         postal_code,name_vice,relationship,
-        address_vice,phone_vice,update_time
+        address_vice,phone_vice,update_time,
+        apply_info_id,path_number
     </sql>
 </mapper>

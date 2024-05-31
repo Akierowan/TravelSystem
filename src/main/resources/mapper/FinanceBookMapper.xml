@@ -9,11 +9,11 @@
             <result property="amount" column="amount" jdbcType="FLOAT"/>
             <result property="type" column="type" jdbcType="INTEGER"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="orderInfoId" column="order_info_id" jdbcType="INTEGER"/>
+            <result property="applyInfoId" column="apply_info_id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,amount,type,
-        update_time,order_info_id
+        update_time,apply_info_id
     </sql>
 </mapper>
