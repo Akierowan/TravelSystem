@@ -12,7 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@TableName(value ="apply_info")
+@TableName(value = "apply_info")
 @Data
 @Builder
 @NoArgsConstructor

@@ -21,7 +21,7 @@ import java.time.temporal.ChronoUnit;
 
 @Service
 public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook>
-    implements ApplyBookService{
+    implements ApplyBookService {
 
     @Autowired
     ApplyBookMapper applyBookMapper;

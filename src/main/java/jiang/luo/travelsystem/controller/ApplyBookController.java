@@ -7,7 +7,7 @@ import jiang.luo.travelsystem.service.ApplyBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags="旅游申请书相关接口")
+@Api(tags = "旅游申请书相关接口")
 @RestController
 @RequestMapping("/applybook")
 @CrossOrigin
@@ -20,7 +20,7 @@ public class ApplyBookController {
      */
     @ApiOperation("提交旅游申请书")
     @PostMapping("/save")
-    public Result saveApplyBook(@RequestBody ApplyBookDTO applyBookDTO){
+    public Result saveApplyBook(@RequestBody ApplyBookDTO applyBookDTO) {
         try {
             applyBookService.saveApplyBook(applyBookDTO);
             return Result.success();
@@ -34,7 +34,7 @@ public class ApplyBookController {
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
-    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO){
+    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO) {
         try {
             PageResult pageResult = applyBookService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);
@@ -48,7 +48,7 @@ public class ApplyBookController {
      */
     @ApiOperation("根据id查找旅游申请书")
     @GetMapping
-    public Result<ApplyBook> getById(@RequestParam Integer id){
+    public Result<ApplyBook> getById(@RequestParam Integer id) {
         try {
             ApplyBook applyBook = applyBookService.getById(id);
             return Result.success(applyBook);
@@ -62,7 +62,7 @@ public class ApplyBookController {
      */
     @ApiOperation("变更旅游申请书")
     @PostMapping("/alter")
-    public Result alterApplyBook(@RequestBody ApplyBookDTO applyBookDTO){
+    public Result alterApplyBook(@RequestBody ApplyBookDTO applyBookDTO) {
         try {
             applyBookService.updateApplyBook(applyBookDTO);
             return Result.success();
@@ -73,7 +73,7 @@ public class ApplyBookController {
 
     @ApiOperation("取消参加")
     @PutMapping("cancel")
-    public Result cancelParticipation(@RequestParam Integer id){
+    public Result cancelParticipation(@RequestParam Integer id) {
         try {
             applyBookService.cancelParticipation(id);
             return Result.success();
