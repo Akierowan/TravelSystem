@@ -21,7 +21,7 @@ import java.time.temporal.ChronoUnit;
 
 @Service
 public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook>
-    implements ApplyBookService{
+    implements ApplyBookService {
 
     @Autowired
     ApplyBookMapper applyBookMapper;
@@ -44,8 +44,6 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
         applyBook.setUpdateTime(LocalDateTime.now());
 
         applyBookMapper.insert(applyBook);
-
-
     }
 
     /**
@@ -90,6 +88,8 @@ public class ApplyBookServiceImpl extends ServiceImpl<ApplyBookMapper, ApplyBook
             ApplyInfo applyInfo = applyInfoMapper.selectById(applyBook.getApplyInfoId());
             QueryWrapper<PathBook> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("path_number", applyBook.getPathNumber());
+            queryWrapper.eq("delete_status",0);
+
             PathBook pathBook = pathBookMapper.selectOne(queryWrapper);
             // 判断是否成年
             int age = Period.between(applyBook.getBirthday(), LocalDate.now()).getYears();
