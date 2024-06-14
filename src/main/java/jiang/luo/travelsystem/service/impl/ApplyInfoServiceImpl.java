@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.List;
 
 @Service
 public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo>
@@ -40,7 +39,8 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         queryWrapper.eq("path_number", firstApplyDTO.getPathNumber());
         queryWrapper.eq("delete_status", 0);
         PathBook path = pathBookMapper.selectOne(queryWrapper);
-        double totalPrice = path.getAdultPrice() * firstApplyDTO.getAdultNumber() + path.getChildPrice() * firstApplyDTO.getChildNumber();
+        double totalPrice = path.getAdultPrice() * firstApplyDTO.getAdultNumber()
+                + path.getChildPrice() * firstApplyDTO.getChildNumber();
         // 计算距离出发日期的天数
         LocalDate departDate = firstApplyDTO.getDepartDate();
         long daysDiff = ChronoUnit.DAYS.between(LocalDate.now(), departDate);
@@ -169,7 +169,7 @@ public class ApplyInfoServiceImpl extends ServiceImpl<ApplyInfoMapper, ApplyInfo
         LocalDate now = LocalDate.now();
         applyInfo.setPaymentSendDate(now);
         // 交款单的发送日期到支付期限的时间间隔不足 10 天 则更新支付期限
-        if(ChronoUnit.DAYS.between(now, applyInfo.getPayDeadline()) < 10) {
+        if (ChronoUnit.DAYS.between(now, applyInfo.getPayDeadline()) < 10) {
             applyInfo.setPayDeadline(now.plusDays(10));
         }
         applyInfoMapper.updateById(applyInfo);

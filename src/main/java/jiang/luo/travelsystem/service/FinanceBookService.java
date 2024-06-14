@@ -11,5 +11,5 @@ public interface FinanceBookService extends IService<FinanceBook> {
     /**
      * 分页查询
      */
-    public PageResult pageQuery(PageQueryDTO pageQueryDTO);
+    PageResult pageQuery(PageQueryDTO pageQueryDTO);
 }

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class FinanceBookServiceImpl extends ServiceImpl<FinanceBookMapper, FinanceBook>
-    implements FinanceBookService{
+    implements FinanceBookService {
 
     @Autowired
     private FinanceBookMapper financeBookMapper;

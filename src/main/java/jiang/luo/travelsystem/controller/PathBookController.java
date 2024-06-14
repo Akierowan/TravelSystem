@@ -20,7 +20,7 @@ public class PathBookController {
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
-    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO){
+    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO) {
         try {
             PageResult pageResult = pathBookService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);
@@ -34,7 +34,7 @@ public class PathBookController {
      */
     @ApiOperation("新增或变更路线")
     @PostMapping("/save")
-    public Result save(@RequestBody PathBookDTO pathBookDTO){
+    public Result save(@RequestBody PathBookDTO pathBookDTO) {
         try {
             pathBookService.savePathBook(pathBookDTO);
             return Result.success();
@@ -42,13 +42,12 @@ public class PathBookController {
             return Result.error("保存路线失败");
         }
     }
-
     /**
      * 根据id查询路线信息
      */
     @ApiOperation("根据id查询路线信息")
     @GetMapping
-    public Result<PathBook> queryPathById(@RequestParam Integer id){
+    public Result<PathBook> queryPathById(@RequestParam Integer id) {
         try {
             PathBook pathBook = pathBookService.getById(id);
             return Result.success(pathBook);
@@ -56,5 +55,4 @@ public class PathBookController {
             return Result.error("无法获取改路线信息");
         }
     }
-
 }

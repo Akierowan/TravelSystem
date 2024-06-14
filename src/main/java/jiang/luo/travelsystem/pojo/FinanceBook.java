@@ -1,7 +1,6 @@
 package jiang.luo.travelsystem.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
@@ -9,7 +8,7 @@ import java.time.LocalDateTime;
 
 import lombok.Data;
 
-@TableName(value ="finance_book")
+@TableName(value = "finance_book")
 @Data
 public class FinanceBook implements Serializable {
     /**

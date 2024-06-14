@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@TableName(value ="path_book")
+@TableName(value = "path_book")
 @Data
 @NoArgsConstructor
 public class PathBook implements Serializable {

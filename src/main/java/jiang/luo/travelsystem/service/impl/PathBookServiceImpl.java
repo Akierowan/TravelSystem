@@ -3,6 +3,7 @@ package jiang.luo.travelsystem.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import jiang.luo.travelsystem.exception.StatusNotAllowedException;
 import jiang.luo.travelsystem.mapper.PathBookMapper;
 import jiang.luo.travelsystem.pojo.PageQueryDTO;
 import jiang.luo.travelsystem.pojo.PageResult;
@@ -23,7 +24,7 @@ import java.util.List;
 */
 @Service
 public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
-    implements PathBookService{
+    implements PathBookService {
 
     @Autowired
     PathBookMapper pathBookMapper;
@@ -32,7 +33,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
      * 新增或变更路线
      */
     @Override
-    public void savePathBook(PathBookDTO pathBookDTO) throws Exception {
+    public void savePathBook(PathBookDTO pathBookDTO) throws StatusNotAllowedException {
         PathBook pathBook = new PathBook();
         BeanUtils.copyProperties(pathBookDTO, pathBook);
 
@@ -42,7 +43,7 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
             //逻辑删除原路线
             PathBook del = pathBookMapper.selectById(pathBookDTO.getId());
             if (del.getDeleteStatus() == 1) {
-                throw new Exception();
+                throw new StatusNotAllowedException("已经被逻辑删除，不能再次删除!");
             }
             del.setDeleteStatus(1);
             del.setUpdateTime(LocalDateTime.now());
@@ -52,13 +53,12 @@ public class PathBookServiceImpl extends ServiceImpl<PathBookMapper, PathBook>
             queryWrapper.eq("path_number", pathBookDTO.getPathNumber());
             List<PathBook> pathBooks = pathBookMapper.selectList(queryWrapper);
             if (!pathBooks.isEmpty()) {
-                throw new Exception();
+                throw new StatusNotAllowedException("该路径编号已存在!");
             }
         }
         pathBook.setUpdateTime(LocalDateTime.now());
         pathBookMapper.insert(pathBook);
     }
-
     /**
      * 分页查询
      */

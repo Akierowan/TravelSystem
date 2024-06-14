@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 /**
  * 后端统一返回结果
+ * @param <T>
  */
 @Data
 public class Result<T> implements Serializable {
@@ -33,5 +34,4 @@ public class Result<T> implements Serializable {
         result.code = 1;
         return result;
     }
-
 }

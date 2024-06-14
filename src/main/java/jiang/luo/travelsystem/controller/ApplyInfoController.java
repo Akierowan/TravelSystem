@@ -2,15 +2,15 @@ package jiang.luo.travelsystem.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
-import jiang.luo.travelsystem.pojo.*;
+import jiang.luo.travelsystem.pojo.FirstApplyDTO;
+import jiang.luo.travelsystem.pojo.PageQueryDTO;
+import jiang.luo.travelsystem.pojo.PageResult;
+import jiang.luo.travelsystem.pojo.Result;
 import jiang.luo.travelsystem.service.ApplyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@Api(tags="申请信息相关接口")
+@Api(tags = "申请信息相关接口")
 @RestController
 @RequestMapping("/applyinfo")
 @CrossOrigin
@@ -66,7 +66,7 @@ public class ApplyInfoController {
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
-    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO){
+    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO) {
         try {
             PageResult pageResult = applyInfoService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);
@@ -81,7 +81,7 @@ public class ApplyInfoController {
      */
     @ApiOperation("取消整个申请")
     @PutMapping("/cancel")
-    public Result cancelApply(Integer id){
+    public Result cancelApply(Integer id) {
         try {
             applyInfoService.cancelApply(id);
             return Result.success();
@@ -96,7 +96,7 @@ public class ApplyInfoController {
      */
     @ApiOperation("发送交款单")
     @PutMapping("/sendpayment")
-    public Result sendPayment(@RequestParam Integer id ) {
+    public Result sendPayment(@RequestParam Integer id) {
         try {
             applyInfoService.sendPayment(id);
             return Result.success();

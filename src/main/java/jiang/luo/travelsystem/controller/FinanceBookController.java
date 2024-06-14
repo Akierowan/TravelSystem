@@ -9,7 +9,7 @@ import jiang.luo.travelsystem.service.FinanceBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(tags="财务报表相关接口")
+@Api(tags = "财务报表相关接口")
 @RestController
 @RequestMapping("/financebook")
 @CrossOrigin
@@ -22,7 +22,7 @@ public class FinanceBookController {
      */
     @ApiOperation("分页查询")
     @PostMapping("/page")
-    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO){
+    public Result<PageResult> page(@RequestBody PageQueryDTO pageQueryDTO) {
         try {
             PageResult pageResult = financeBookService.pageQuery(pageQueryDTO);
             return Result.success(pageResult);

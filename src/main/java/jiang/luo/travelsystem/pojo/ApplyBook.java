@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import lombok.Data;
 
-@TableName(value ="apply_book")
+@TableName(value = "apply_book")
 @Data
 public class ApplyBook implements Serializable {
     /**
